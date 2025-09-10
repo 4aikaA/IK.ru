@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Игорь Кузнецов - Автоматизация, монтаж и обслуживание инженерных систем</title>
+    <meta name="description" content="Автоматизация, монтаж и обслуживание инженерных систем. Проектирование, кондиционирование, отопление, вентиляция. Сэкономьте до 88% на охлаждении и обогреве.">
+    <meta name="keywords" content="автоматизация, монтаж, инженерные системы, вентиляция, кондиционирование, отопление, диспетчеризация">
+    <meta property="og:title" content="Игорь Кузнецов - Инженерные системы">
+    <meta property="og:description" content="Современные энергоэффективные решения для вашего дома и бизнеса.">
+    <meta property="og:image" content="examples/all_pool.png">
+    <meta property="og:locale" content="ru_RU">
+    <meta property="og:site_name" content="Игорь Кузнецов">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Игорь Кузнецов - Инженерные системы">
+    <meta name="twitter:description" content="Современные энергоэффективные решения для вашего дома и бизнеса.">
+    <meta name="twitter:image" content="examples/all_pool.png">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-text">Игорь</span>
+                    <span class="logo-surname">Кузнецов</span>
+                </div>
+                <div class="header-services-icons" aria-label="Быстрый доступ к услугам">
+                    <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
+                        <img src="vektor/инженер.png" alt="Проектирование">
+                    </button>
+                    <button class="header-icon" data-open-modal data-service="ac" title="Кондиционирование">
+                        <img src="vektor/конд.png" alt="Кондиционирование">
+                    </button>
+                    <button class="header-icon" data-open-modal data-service="heating" title="Отопление">
+                        <img src="vektor/отоплен.png" alt="Отопление">
+                    </button>
+                    <button class="header-icon" data-open-modal data-service="ventilation" title="Вентиляционные системы">
+                        <img src="vektor/вент.png" alt="Вентиляционные системы">
+                    </button>
+                    <button class="header-icon" data-open-modal data-service="vacuum" title="Встроенные пылесосы">
+                        <img src="vektor/пылесос.png" alt="Встроенные пылесосы">
+                    </button>
+                    <button class="header-icon" data-open-modal data-service="automation" title="Автоматизация и диспетчеризация">
+                        <img src="vektor/автоматиз.png" alt="Автоматизация и диспетчеризация">
+                    </button>
+                    <button class="header-icon" data-open-modal data-service="aereco" title="Вентиляция Aereco">
+                        <img src="vektor/aereco.png" alt="Вентиляция Aereco">
+                    </button>
+                </div>
+                <nav class="nav">
+                    <ul class="nav-menu">
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#about">О себе</a></li>
+                        <li><a href="#examples">Примеры работ</a></li>
+                        <li><a href="#contact">Контакты</a></li>
+                    </ul>
+                </nav>
+                <button class="burger" aria-label="Меню" aria-expanded="false" aria-controls="primary-menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <div class="header-phone">
+                    <a href="tel:+79216433297">+7 921 643-32-97</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">
+                        Автоматизация, монтаж и<br>
+                        <span class="highlight">обслуживание инженерных систем</span>
+                    </h1>
+                    <p class="hero-description">
+                        Современные энергоэффективные решения для экономии до 88% на охлаждении или обогреве
+                    </p>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">300+</div>
+                            <div class="stat-label">реализованных проектов</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15</div>
+                            <div class="stat-label">лет в инженерной отрасли</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50+</div>
+                            <div class="stat-label">довольных клиентов</div>
+                        </div>
+                    </div>
+                    <div class="hero-buttons">
+                        <a href="#about" class="btn btn-secondary">О себе</a>
+                        <a href="#services" class="btn btn-secondary btn-hero-accent">Наши услуги</a>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <div class="placeholder-image">Фото Игоря Кузнецова</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наши <span class="highlight">услуги</span></h2>
+                <p class="section-description">Полный спектр инженерных решений для вашего комфорта</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card" data-service="design">
+                    <div class="service-icon"><img src="vektor/инженер.png" alt="Проектирование"></div>
+                    <h3>Проектирование инженерных систем</h3>
+                    <p>Современные энергоэффективные решения для экономии до 88% на охлаждении или обогреве</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="design">Подробнее</a></div>
+                </div>
+                <div class="service-card" data-service="ac">
+                    <div class="service-icon"><img src="vektor/конд.png" alt="Кондиционирование"></div>
+                    <h3>Системы кондиционирования</h3>
+                    <p>Принцип одного окна - экономия времени и до 30% на кондиционерах</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="ac">Подробнее</a></div>
+                </div>
+                <div class="service-card" data-service="heating">
+                    <div class="service-icon"><img src="vektor/отоплен.png" alt="Отопление"></div>
+                    <h3>Системы отопления</h3>
+                    <p>Энергоэффективные решения для комфортного климата в помещении</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="heating">Подробнее</a></div>
+                </div>
+                <div class="service-card" data-service="ventilation">
+                    <div class="service-icon"><img src="vektor/вент.png" alt="Вентиляция"></div>
+                    <h3>Вентиляционные системы</h3>
+                    <p>Проектирование и монтаж систем вентиляции для жилых и коммерческих объектов</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="ventilation">Подробнее</a></div>
+                </div>
+                <div class="service-card" data-service="vacuum">
+                    <div class="service-icon"><img src="vektor/пылесос.png" alt="Встроенные пылесосы"></div>
+                    <h3>Встроенные пылесосы</h3>
+                    <p>Центральные системы очистки для современного дома</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="vacuum">Подробнее</a></div>
+                </div>
+                <div class="service-card" data-service="automation">
+                    <div class="service-icon"><img src="vektor/автоматиз.png" alt="Автоматизация"></div>
+                    <h3>Автоматизация и диспетчеризация</h3>
+                    <p>Умные системы управления для современного здания</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="automation">Подробнее</a></div>
+                </div>
+                <div class="service-card" data-service="aereco">
+                    <div class="service-icon"><img src="vektor/aereco.png" alt="Aereco"></div>
+                    <h3>Вентиляция Aereco</h3>
+                    <p>Системы приточной вентиляции Aereco для энергоэффективного воздухообмена</p>
+                    <div class="card-footer"><a href="#" class="btn btn-secondary" data-open-modal data-service="aereco">Подробнее</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-text">
+                    <h2 class="section-title">О <span class="highlight">себе</span></h2>
+                    <p>Инженер с 15-летним опытом работы в области автоматизации, монтажа и обслуживания инженерных систем.</p>
+                    <p>Специализируюсь на создании энергоэффективных решений, которые помогают экономить до 88% на охлаждении и обогреве.</p>
+                    <p>Работаю с современными технологиями и обеспечиваю полное сопровождение проектов от проектирования до ввода в эксплуатацию.</p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">лет опыта</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">300+</div>
+                            <div class="stat-label">реализованных проектов</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">100%</div>
+                            <div class="stat-label">качество работ</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <div class="placeholder-image">Фото за работой</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Examples Section -->
+    <section class="examples" id="examples">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Примеры <span class="highlight">работ</span></h2>
+                <p class="section-description">Наши реальные проекты по вентиляции и кондиционированию</p>
+            </div>
+            <div class="examples-grid">
+                <div class="example-card">
+                    <img src="examples/aerotruba.png" alt="Аэротруба" class="example-image">
+                    <h3>Аэротруба</h3>
+                    <p>Современная система вентиляции для спортивного комплекса</p>
+                </div>
+                <div class="example-card">
+                    <img src="examples/boiler-1000m2.png" alt="Котловая 1000м" class="example-image">
+                    <h3>Котловая 1000м</h3>
+                    <p>Энергоэффективная система отопления для промышленного объекта</p>
+                </div>
+                <div class="example-card">
+                    <img src="examples/sanatorium-white-nights.png" alt="Санаторий Белые ночи" class="example-image">
+                    <h3>Санаторий "Белые ночи"</h3>
+                    <p>Комплексная система климат-контроля для санатория</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section class="partners" id="partners">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Наши <span class="highlight">партнёры</span></h2>
+                <p class="section-description">Оборудование и бренды, с которыми мы работаем</p>
+            </div>
+            <div class="partners-grid">
+                <img src="LOGO/Huawei.png" alt="Huawei" class="partner-logo">
+                <img src="LOGO/Victron Energy.png" alt="Victron Energy" class="partner-logo">
+                <img src="LOGO/Fronius.png" alt="Fronius" class="partner-logo">
+                <img src="LOGO/Hidros.png" alt="Hidros" class="partner-logo">
+                <img src="LOGO/JASolar.png" alt="JA Solar" class="partner-logo">
+                <img src="LOGO/Fox-ESS.png" alt="Fox ESS" class="partner-logo">
+                <img src="LOGO/Risen.png" alt="Risen" class="partner-logo">
+                <img src="LOGO/SMA.png" alt="SMA" class="partner-logo">
+                <img src="LOGO/JohnsonLogo.png" alt="Johnson Controls" class="partner-logo">
+                <img src="LOGO/Uponor.png" alt="Uponor" class="partner-logo">
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Свяжитесь с <span class="highlight">нами</span></h2>
+                <p class="section-description">Получите консультацию по вашим инженерным системам</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <!-- Телефон -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><img src="img/whatsapp.svg" alt="Телефон"></div>
+                        <div class="contact-text">
+                            <h4>Телефон</h4>
+                            <p>
+                                <a href="tel:+79216433297">+7 921 643-32-97</a>
+                                <span style="margin-left:10px;">
+                                    <a class="contact-circle" href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="vektor/whatsapp.svg" alt="WhatsApp"></a>
+                                    <a class="contact-circle" href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram"><img src="vektor/telegram.svg" alt="Telegram"></a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- Email -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><img src="img/yandex.svg" alt="Email"></div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p><a href="mailto:igor.kuznetsov@gmail.com">igor.kuznetsov@gmail.com</a></p>
+                        </div>
+                    </div>
+                    <!-- Адрес -->
+                    <div class="contact-item">
+                        <div class="contact-icon"><img src="img/2gis.svg" alt="Адрес"></div>
+                        <div class="contact-text">
+                            <h4>Адрес</h4>
+                            <p>
+                                188660, Ленинградская обл., дер. Порошкино, ул.Березовая 8
+                                <span style="margin-left:10px;">
+                                    <a class="contact-circle" href="https://yandex.ru/maps" target="_blank" rel="noopener" aria-label="Яндекс Карты"><img src="vektor/Yandex.png" alt="Яндекс Карты"></a>
+                                    <a class="contact-circle" href="https://2gis.ru" target="_blank" rel="noopener" aria-label="2ГИС"><img src="vektor/2GIS.png" alt="2ГИС"></a>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form class="form" id="contact-form">
+                        <div class="form-group">
+                            <label for="name">Имя</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" name="message" rows="5"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Отправить заявку</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-text">
+                    <p>&copy; 2024 Игорь Кузнецов. Все права защищены.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal -->
+    <div class="modal" id="service-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-dialog" role="document">
+            <button class="modal-close" type="button" aria-label="Закрыть" data-close-modal>&times;</button>
+            <div class="modal-content">
+                <h3 class="modal-title" id="service-modal-title"></h3>
+                <div class="modal-actions"><a href="#contact" class="btn btn-primary" data-go-contact>Заявка</a></div>
+                <div class="modal-body" id="service-modal-body"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
