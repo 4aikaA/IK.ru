@@ -117,7 +117,7 @@ const serviceContent = {
     },
     automation: {
         title: 'Автоматизация и диспетчеризация',
-        body: '<div class="modal-media"><img src="uslugi/авто.jpg" alt="Автоматизация и диспетчеризация" /></div>\
+        body: '<div class="modal-media"><img src="uslugi/диспет.jpg" alt="Автоматизация и диспетчеризация" /></div>\
 <p><strong>Интеллектуальное управление инженерией:</strong> контроллеры, датчики, удалённый доступ, сценарии.</p>\
 <p><strong>Что мы предлагаем:</strong></p>\
 <ul style="margin: 0 0 16px 18px; line-height: 1.8; color: #444;">\
@@ -151,12 +151,14 @@ function openModalByKey(key) {
     modalTitle.textContent = content.title;
     modalBody.innerHTML = content.body;
     modal.setAttribute('aria-hidden', 'false');
+    modal.classList.add('active');
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
     if (!modal) return;
     modal.setAttribute('aria-hidden', 'true');
+    modal.classList.remove('active');
     document.body.style.overflow = '';
 }
 
@@ -207,4 +209,30 @@ document.addEventListener('click', (e) => {
             window.location.hash = '#contact';
         }
     }
+});
+
+// Debug: Add click listeners to header icons
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('Debug: Adding click listeners to header icons');
+    
+    const headerIcons = document.querySelectorAll('.header-icon[data-open-modal]');
+    console.log('Found header icons:', headerIcons.length);
+    
+    headerIcons.forEach((icon, index) => {
+        console.log(`Icon ${index}:`, icon.getAttribute('data-service'));
+        
+        icon.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+            console.log('Header icon clicked:', this.getAttribute('data-service'));
+            
+            const key = this.getAttribute('data-service');
+            if (key && serviceContent[key]) {
+                console.log('Opening modal for:', key);
+                openModalByKey(key);
+            } else {
+                console.error('No content found for key:', key);
+            }
+        });
+    });
 });
