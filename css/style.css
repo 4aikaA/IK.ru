@@ -1,8 +1,8 @@
 ﻿/* Основные переменные */
 :root {
-    --dark-blue: #0f172a;
+    --dark-blue: #1C202B;
     --dark-teal: #0d9488;
-    --orange: #ff6b35;
+    --orange: #EF6F38;
     --white: #ffffff;
     --gray-light: #f8fafc;
     --gray: #64748b;
@@ -71,23 +71,78 @@ body {
     align-items: center;
 }
 
-.hero-content {
+.hero-layout {
+    display: grid;
+    grid-template-columns: 1fr minmax(480px, 1.2fr) 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.hero-side {
+    display: flex;
+    justify-content: center;
+}
+
+.hero-card {
+    width: 100%;
+    max-width: 520px;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(0,0,0,.35);
+    border: 1px solid rgba(255,255,255,.15);
+    background: rgba(255,255,255,.06);
+    backdrop-filter: blur(6px);
+}
+
+.hero-card img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-card--placeholder {
+    aspect-ratio: 4 / 3;
+    display: block;
+    background: transparent;
+    border: 2px dashed rgba(255,255,255,.35);
+}
+
+.hero-card--placeholder.filled { border-style: solid; }
+
+.hero-card--placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hero-center {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero-title {
-    font-size: clamp(32px, 5vw, 48px);
-    font-weight: 700;
-    margin-bottom: 20px;
-    line-height: 1.2;
+    font-size: clamp(36px, 6vw, 64px);
+    line-height: 1.1;
+    font-weight: 800;
+    margin-bottom: 24px;
 }
 
-.hero-main-content {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 40px;
+.hero-lead {
+    font-size: clamp(16px, 2.4vw, 20px);
+    color: rgba(255,255,255,.85);
+    max-width: 720px;
+    margin: 0 auto 28px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
     align-items: center;
-    margin-top: 40px;
 }
 
 .hero-text {
@@ -152,7 +207,7 @@ body {
 }
 
 .btn-primary:hover {
-    background: #e55a2b;
+    background: #E86333;
     transform: translateY(-2px);
 }
 
@@ -277,11 +332,11 @@ body {
 
 @media (max-width: 480px) {
     .hero {
-        padding: 80px 0 60px;
+        padding: 96px 0 64px;
     }
     
     .hero-title {
-        font-size: clamp(24px, 6vw, 32px);
+        font-size: clamp(28px, 9vw, 40px);
     }
     
     .services-grid {
@@ -344,7 +399,7 @@ body {
 
 /* Footer */
 .footer {
-    background: var(--dark-blue);
+    background: #1C202B;
     color: var(--white);
     padding: 60px 0 30px;
     margin-top: 80px;
@@ -646,7 +701,7 @@ body {
 
 /* About page top banner */
 .about-hero {
-    background: #0f172a;
+    background: #1C202B;
     padding: 70px 0 60px;
     margin-top: 72px; /* space under fixed header */
 }
@@ -679,19 +734,19 @@ body {
     background: linear-gradient(180deg, rgba(255,255,255,0.7), rgba(255,255,255,0.3));
     box-shadow: 0 6px 22px rgba(15,23,42,0.12);
 }
-.about-card__title { margin-top: 16px; font-size: clamp(20px, 3.6vw, 24px); font-weight: 800; color: #0f172a; }
+.about-card__title { margin-top: 16px; font-size: clamp(20px, 3.6vw, 24px); font-weight: 800; color: #1C202B; }
 .about-card__lead { margin-top: 8px; color: #475569; max-width: 720px; }
 
 .about-card__stats { display: flex; gap: 18px; margin-top: 18px; flex-wrap: wrap; justify-content: center; }
 .stat-pill { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 14px 16px; min-width: 120px; box-shadow: 0 6px 18px rgba(2,8,23,.06); }
-.stat-pill .num { display: block; color: #ff6b35; font-weight: 800; font-size: 22px; line-height: 1; }
+.stat-pill .num { display: block; color: #EF6F38; font-weight: 800; font-size: 22px; line-height: 1; }
 .stat-pill .lbl { display: block; color: #64748b; font-size: 12px; margin-top: 6px; }
 
 .about-card__specs { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin-top: 18px; width: 100%; }
 .about-card__specs .spec { 
-    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; color: #0f172a; font-weight: 600; text-align: center; cursor: pointer; transition: .2s ease; 
+    background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; color: #1C202B; font-weight: 600; text-align: center; cursor: pointer; transition: .2s ease; 
 }
-.about-card__specs .spec:hover { background: #fff; border-color: #ff6b35; box-shadow: 0 6px 18px rgba(255,107,53,.18); transform: translateY(-2px); }
+.about-card__specs .spec:hover { background: #fff; border-color: #EF6F38; box-shadow: 0 6px 18px rgba(239,111,56,.18); transform: translateY(-2px); }
 
 @media (max-width: 768px){
   .about-hero { padding: 56px 0 44px; }
@@ -703,8 +758,8 @@ body {
 /* New rows under the card */
 .about-stats-row { display: flex; gap: 18px; justify-content: center; flex-wrap: wrap; margin: 16px auto 10px; }
 .about-specs-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 10px; margin: 10px auto 0; max-width: 920px; }
-.about-specs-row .spec { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; color: #0f172a; font-weight: 600; text-align: center; cursor: pointer; transition: .2s ease; }
-.about-specs-row .spec:hover { background: #fff; border-color: #ff6b35; box-shadow: 0 6px 18px rgba(255,107,53,.18); transform: translateY(-2px); }
+.about-specs-row .spec { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; color: #1C202B; font-weight: 600; text-align: center; cursor: pointer; transition: .2s ease; }
+.about-specs-row .spec:hover { background: #fff; border-color: #EF6F38; box-shadow: 0 6px 18px rgba(239,111,56,.18); transform: translateY(-2px); }
 
 @media (max-width:768px){
   .about-specs-row { grid-template-columns: 1fr; }
@@ -772,7 +827,7 @@ body:not(.index-page) .header-phone { display: none !important; }
   padding: 16px 18px;
   min-width: 120px;
   text-align: center;
-  box-shadow: 0 8px 24px rgba(15,23,42,0.25), 0 0 0 3px rgba(255,107,53,0.15) inset;
+  box-shadow: 0 8px 24px rgba(15,23,42,0.25), 0 0 0 3px rgba(239,111,56,0.15) inset;
   transition: transform .2s ease, box-shadow .2s ease;
 }
 .about-stats .stat-number {
@@ -790,10 +845,156 @@ body:not(.index-page) .header-phone { display: none !important; }
 }
 .about-stats .stat-item:hover {
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(15,23,42,0.32), 0 0 0 3px rgba(255,107,53,0.25) inset;
+  box-shadow: 0 12px 28px rgba(15,23,42,0.32), 0 0 0 3px rgba(239,111,56,0.25) inset;
 }
 @media (max-width: 768px){
   .about-stats { justify-content: center; }
   .about-stats .stat-item { min-width: 108px; padding: 14px 16px; }
   .about-stats .stat-number { font-size: 24px; }
+}
+
+/* === Stability: predictable image boxes to reduce CLS === */
+.hero-photo,
+.about-photo,
+.about-preview__image img {
+	max-width: 100%;
+	height: auto;
+	object-fit: contain;
+	aspect-ratio: 1 / 1;
+}
+
+.example-image {
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	aspect-ratio: 16 / 9;
+}
+
+.header-icon img,
+.header-messenger img,
+.mobile-service-btn img,
+.partner-logo {
+	height: auto;
+	object-fit: contain;
+	aspect-ratio: 1 / 1;
+}
+
+/* Namespaced styles for inner pages */
+.examples-page .hero,
+.cooperation-page .hero,
+.about-page .about-hero {
+	background: #1C202B;
+	background-image: none;
+	color: #fff;
+	padding: 60px 0;
+}
+
+.examples-page .hero-title,
+.cooperation-page .hero-title,
+.about-page .about-hero__title {
+	font-weight: 800;
+	line-height: 1.1;
+	letter-spacing: -0.02em;
+	font-size: clamp(28px, 4.2vw, 52px);
+	margin: 0;
+	text-align: left;
+}
+
+.examples-page .hero-description,
+.cooperation-page .hero-description {
+	font-size: clamp(14px, 1.6vw, 18px);
+	opacity: 0.9;
+	margin-top: 8px;
+}
+
+/* Avoid leak of header-nav visibility between pages */
+.examples-page .header-nav,
+.cooperation-page .header-nav,
+.about-page .header-nav {
+	display: flex;
+}
+
+/* Вариации карточек и смещения */
+.hero-side--left .hero-card {
+    transform: translateY(-56px);
+    max-width: 580px;
+}
+
+.hero-side--right { gap: 16px; flex-direction: column; }
+
+.hero-card--small {
+    max-width: 280px;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+}
+
+.hero-card--small img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+@media (max-width: 992px) {
+    .hero-side--left .hero-card { transform: none; max-width: 100%; }
+    .hero-side--right { gap: 20px; }
+    .hero-card--small { max-width: 100%; }
+}
+
+/* Раскладка и размеры трёх фото в баннере */
+.hero-side--left .hero-card { max-width: 720px; transform: translateY(-84px); }
+.hero-card--medium { max-width: 420px; transform: translateY(56px); }
+.hero-side--right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+
+/* Маленькая плавающая карточка */
+.hero-card--small {
+    max-width: 220px;
+    aspect-ratio: 4 / 3;
+    position: static;
+    align-self: flex-end;
+}
+
+/* Поддержка тёмной подложки под маленькой картой не нужна, но оставим тень */
+.hero-card--small { box-shadow: 0 18px 40px rgba(0,0,0,.4); }
+
+@media (max-width: 1200px) {
+    .hero-side--left .hero-card { max-width: 620px; transform: translateY(-64px); }
+    .hero-card--medium { max-width: 380px; transform: translateY(44px); }
+    .hero-card--small { max-width: 200px; }
+}
+
+@media (max-width: 992px) {
+    .hero-layout { grid-template-columns: 1fr; }
+    .hero-side--left .hero-card,
+    .hero-card--medium { max-width: 100%; transform: none; }
+    .hero-side--right { align-items: center; }
+    .hero-card--small { max-width: 70%; margin: 0 auto; }
+}
+
+@media (max-width: 480px) {
+    .hero-card--small { max-width: 100%; }
+}
+
+/* Позиционирование правых изображений относительно заголовка/кнопок */
+.hero-side--right { display: flex; flex-direction: column; align-items: flex-end; gap: 20px; }
+.hero-card--medium { max-width: 420px; transform: translateY(-90px); align-self: flex-end; }
+.hero-card--small { max-width: 220px; transform: translateY(24px); align-self: flex-end; }
+
+@media (max-width: 1200px) {
+    .hero-card--medium { transform: translateY(-60px); }
+    .hero-card--small { transform: translateY(18px); }
+}
+
+@media (max-width: 992px) {
+    .hero-side--right { align-items: center; }
+    .hero-card--medium, .hero-card--small { transform: none; align-self: center; }
+}
+
+.hero-buttons .btn {
+    width: 160px;
+    height: 48px;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+@media (max-width: 480px) {
+    .hero-buttons .btn { width: 180px; height: 48px; }
 }

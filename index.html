@@ -17,7 +17,9 @@
     <meta name="twitter:description" content="Современные энергоэффективные решения для вашего дома и бизнеса.">
     <meta name="twitter:image" content="examples/all_pool.png">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="css/style.css?v=147">
+    <link rel="preload" href="css/style.css?v=151" as="style">
+    <link rel="preload" as="image" href="self/main_без_фона.png">
+    <link rel="stylesheet" href="css/style.css?v=151">
 </head>
 <body class="index-page">
     <header class="header">
@@ -29,25 +31,25 @@
                 </a>
                 <div class="header-services-icons" aria-label="Быстрый доступ к услугам">
                     <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
-                        <img src="vektor/инженер.png" alt="Проектирование">
+                        <img src="vektor/инженер.png" alt="Проектирование" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="ac" title="Кондиционирование">
-                        <img src="vektor/конд.png" alt="Кондиционирование">
+                        <img src="vektor/конд.png" alt="Кондиционирование" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="heating" title="Отопление">
-                        <img src="vektor/отоплен.png" alt="Отопление">
+                        <img src="vektor/отоплен.png" alt="Отопление" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="ventilation" title="Вентиляционные системы">
-                        <img src="vektor/вент.png" alt="Вентиляционные системы">
+                        <img src="vektor/вент.png" alt="Вентиляционные системы" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="vacuum" title="Встроенные пылесосы">
-                        <img src="vektor/пылесос.png" alt="Встроенные пылесосы">
+                        <img src="vektor/пылесос.png" alt="Встроенные пылесосы" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="automation" title="Автоматизация и диспетчеризация">
-                        <img src="vektor/автоматиз.png" alt="Автоматизация и диспетчеризация">
+                        <img src="vektor/автоматиз.png" alt="Автоматизация и диспетчеризация" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="aereco" title="Вентиляция Aereco">
-                        <img src="vektor/aereco.png" alt="Вентиляция Aereco">
+                        <img src="vektor/aereco.png" alt="Вентиляция Aereco" loading="lazy" decoding="async">
                     </button>
                 </div>
                 <nav class="header-nav">
@@ -63,19 +65,26 @@
     <main>
         <section class="hero">
             <div class="container">
-                <div class="hero-content">
-                    <h1 class="hero-title">Автоматизация, монтаж и<br>обслуживание инженерных систем</h1>
-                    <div class="hero-main-content">
-                        <div class="hero-text">
-                            <h2 class="hero-subtitle">Инженер-автоматизатор</h2>
-                            <p class="hero-description">Создаю комфорт в вашем доме и офисе. Надежные системы, которые работают годами</p>
-                            <div class="hero-buttons">
-                                <a href="about.html" class="btn btn-primary">О себе</a>
-                                <a href="#services" class="btn btn-secondary">Наши услуги</a>
-                            </div>
+                <div class="hero-layout">
+                    <div class="hero-side hero-side--left">
+                        <div class="hero-card">
+                            <img src="self/main_без_фона.png" alt="Главное фото" loading="lazy" decoding="async">
                         </div>
-                        <div class="hero-image">
-                            <img src="self/main_без_фона.png" alt="Игорь Кузнецов" class="hero-photo">
+                    </div>
+                    <div class="hero-center">
+                        <h1 class="hero-title">Инженерные решения<br>для вашего успеха</h1>
+                        <p class="hero-lead">Профессиональные услуги инженера: проектирование, консультации, сопровождение. Надёжный подход к задачам любой сложности. Узнайте больше о моём опыте и реализованных проектах.</p>
+                        <div class="hero-buttons">
+                            <a href="#services" class="btn btn-primary">Услуги</a>
+                            <a href="#contact" class="btn btn-secondary">Связаться</a>
+                        </div>
+                    </div>
+                    <div class="hero-side hero-side--right">
+                        <div class="hero-card hero-card--placeholder filled hero-card--medium" aria-label="Вторая картинка">
+                            <img src="self/foto_main_2.avif" alt="Инженерная команда за работой" loading="lazy" decoding="async">
+                        </div>
+                        <div class="hero-card hero-card--small" aria-label="Дополнительное фото">
+                            <img src="self/foto_main_3.avif" alt="Дополнительное фото" loading="lazy" decoding="async">
                         </div>
                     </div>
                 </div>
@@ -91,42 +100,42 @@
                 <div class="services-grid">
                     <div class="service-card" data-service="design">
                         <div class="service-icon">
-                            <img src="vektor/инженер.png" alt="Проектирование">
+                            <img src="vektor/инженер.png" alt="Проектирование" loading="lazy" decoding="async">
                         </div>
                         <h3 class="service-title">Проектирование инженерных систем</h3>
                         <p class="service-description">Разработка проектов инженерных систем с учетом всех требований и норм</p>
                     </div>
                     <div class="service-card" data-service="ac">
                         <div class="service-icon">
-                            <img src="vektor/конд.png" alt="Кондиционирование">
+                            <img src="vektor/конд.png" alt="Кондиционирование" loading="lazy" decoding="async">
                         </div>
                         <h3 class="service-title">Системы кондиционирования</h3>
                         <p class="service-description">Установка и обслуживание систем кондиционирования для комфортного климата</p>
                     </div>
                     <div class="service-card" data-service="heating">
                         <div class="service-icon">
-                            <img src="vektor/отоплен.png" alt="Отопление">
+                            <img src="vektor/отоплен.png" alt="Отопление" loading="lazy" decoding="async">
                         </div>
                         <h3 class="service-title">Системы отопления</h3>
                         <p class="service-description">Монтаж и настройка систем отопления для эффективного обогрева</p>
                     </div>
                     <div class="service-card" data-service="ventilation">
                         <div class="service-icon">
-                            <img src="vektor/вент.png" alt="Вентиляция">
+                            <img src="vektor/вент.png" alt="Вентиляция" loading="lazy" decoding="async">
                         </div>
                         <h3 class="service-title">Вентиляционные системы</h3>
                         <p class="service-description">Организация приточно-вытяжной вентиляции для свежего воздуха</p>
                     </div>
                     <div class="service-card" data-service="vacuum">
                         <div class="service-icon">
-                            <img src="vektor/пылесос.png" alt="Встроенные пылесосы">
+                            <img src="vektor/пылесос.png" alt="Встроенные пылесосы" loading="lazy" decoding="async">
                         </div>
                         <h3 class="service-title">Встроенные пылесосы</h3>
                         <p class="service-description">Установка центральных пылесосных систем для удобства уборки</p>
                     </div>
                     <div class="service-card" data-service="automation">
                         <div class="service-icon">
-                            <img src="vektor/автоматиз.png" alt="Автоматизация">
+                            <img src="vektor/автоматиз.png" alt="Автоматизация" loading="lazy" decoding="async">
                         </div>
                         <h3 class="service-title">Автоматизация и диспетчеризация</h3>
                         <p class="service-description">Умные системы управления инженерными системами</p>
@@ -158,7 +167,7 @@
                         <a href="about.html" class="btn btn-primary">Подробнее обо мне</a>
                     </div>
                     <div class="about-preview__image">
-                        <img src="self/main_без_фона.png" alt="Игорь Кузнецов">
+                        <img src="self/main_без_фона.png" alt="Игорь Кузнецов" loading="lazy" decoding="async">
                     </div>
                 </div>
             </div>
@@ -172,22 +181,22 @@
                 </div>
                 <div class="examples-grid">
                     <div class="example-card">
-                        <img src="examples/all_pool.png" alt="Бассейн">
+                        <img src="examples/all_pool.png" alt="Бассейн" loading="lazy" decoding="async">
                         <h3>Бассейн</h3>
                         <p>Система вентиляции и кондиционирования</p>
                     </div>
                     <div class="example-card">
-                        <img src="examples/auto_hamam.png" alt="Хамам">
+                        <img src="examples/auto_hamam.png" alt="Хамам" loading="lazy" decoding="async">
                         <h3>Хамам</h3>
                         <p>Автоматизация и климат-контроль</p>
                     </div>
                     <div class="example-card">
-                        <img src="examples/cinema-kurortny.jpg" alt="Кинотеатр">
+                        <img src="examples/cinema-kurortny.jpg" alt="Кинотеатр" loading="lazy" decoding="async">
                         <h3>Кинотеатр</h3>
                         <p>Система кондиционирования</p>
                     </div>
                     <div class="example-card">
-                        <img src="examples/elizavetinskaya-bolnitsa.jpg" alt="Больница">
+                        <img src="examples/elizavetinskaya-bolnitsa.jpg" alt="Больница" loading="lazy" decoding="async">
                         <h3>Больница</h3>
                         <p>Медицинская вентиляция</p>
                     </div>
@@ -270,7 +279,7 @@
         </div>
     </footer>
 
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=151" defer></script>
 </body>
 </html>
 
