@@ -17,7 +17,7 @@
                     <span class="logo-surname">Кузнецов</span>
                 </a>
                 <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
-                    <span></span><span></span><span></span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
                 </button>
                 <div class="header-services-icons" aria-label="Быстрый доступ к услугам">
                     <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
@@ -48,6 +48,14 @@
                     <a href="examples.html" class="nav-link">Примеры работ</a>
                     <a href="cooperation.html" class="nav-link">Сотрудничество</a>
                 </nav>
+                <div class="header-phone" aria-label="Мессенджеры">
+                    <a class="header-messenger" href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22">
+                    </a>
+                    <a class="header-messenger" href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram">
+                        <img src="vektor/telegram.svg" alt="Telegram" width="22" height="22">
+                    </a>
+                </div>
             </div>
         </div>
         </header>
@@ -70,6 +78,9 @@
                 <div class="hero-text">
                     <h1 class="hero-title">Примеры <span class="highlight">работ</span></h1>
                     <p class="hero-description">Реальные проекты по инженерным системам</p>
+                    <div class="hero-stats">
+                        <span class="stat-badge"><strong>300+</strong> реализованных проектов</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -77,10 +88,7 @@
 
     <section class="examples" id="examples">
         <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Наши <span class="highlight">проекты</span></h2>
-                <p class="section-description">Реальные примеры реализованных систем вентиляции, кондиционирования и автоматизации</p>
-            </div>
+            <div class="section-header" hidden aria-hidden="true"></div>
             <div class="examples-grid">
                 <div class="example-card">
                     <img src="examples/aerotruba.png" alt="Аэротруба" class="example-image" loading="lazy" decoding="async">
@@ -136,6 +144,190 @@
                         <span class="example-area">1200 м</span>
                     </div>
                 </div>
+                <div class="example-card">
+                    <img src="examples/AFIYET.png" alt="AFIYET" class="example-image" loading="lazy" decoding="async">
+                    <h3>AFIYET</h3>
+                    <p>Климат и вентиляция ресторана: стабильный комфорт гостей и персонала.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/all_pool.png" alt="Вентиляция бассейна" class="example-image" loading="lazy" decoding="async">
+                    <h3>Вентиляция бассейна</h3>
+                    <p>Осушение, подмес свежего воздуха и защита отделки от конденсата.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/auto_hamam.png" alt="Авто-хамам" class="example-image" loading="lazy" decoding="async">
+                    <h3>Авто-хамам</h3>
+                    <p>Управление микроклиматом и безопасностью паровых помещений.</p>
+                    <div class="example-details">
+                        <span class="example-type">Автоматизация</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/boiler-600m2.png" alt="Котельная 600 м²" class="example-image" loading="lazy" decoding="async">
+                    <h3>Котельная 600 м²</h3>
+                    <p>Энергоэффективное отопление с погодозависимой автоматикой.</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/dispet4erizasiya.png" alt="Диспетчеризация" class="example-image" loading="lazy" decoding="async">
+                    <h3>Диспетчеризация</h3>
+                    <p>Единый центр управления инженерными системами объекта.</p>
+                    <div class="example-details">
+                        <span class="example-type">Автоматизация</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/fresh-fitnes.jpg" alt="Fresh Fitness" class="example-image" loading="lazy" decoding="async">
+                    <h3>Fresh Fitness</h3>
+                    <p>Комфортный микроклимат для спортивных залов и раздевалок.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/holodilnaya_kamera.png" alt="Холодильная камера" class="example-image" loading="lazy" decoding="async">
+                    <h3>Холодильная камера</h3>
+                    <p>Надёжное холодоснабжение и автоматика температурных режимов.</p>
+                    <div class="example-details">
+                        <span class="example-type">Холодоснабжение</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/kotelnaya_150m2.png" alt="Котельная 150 м²" class="example-image" loading="lazy" decoding="async">
+                    <h3>Котельная 150 м²</h3>
+                    <p>Компактная и безопасная котельная для частного дома.</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/living_house.png" alt="Жилой дом" class="example-image" loading="lazy" decoding="async">
+                    <h3>Жилой дом</h3>
+                    <p>Проект вентиляции и кондиционирования для частного дома.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/montaz_air.png" alt="Монтаж воздуховодов" class="example-image" loading="lazy" decoding="async">
+                    <h3>Монтаж воздуховодов</h3>
+                    <p>Качественный монтаж с учётом шумовых и аэродинамических норм.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/nhv-rus.png" alt="NHV Rus" class="example-image" loading="lazy" decoding="async">
+                    <h3>NHV Rus</h3>
+                    <p>Инженерные системы для офисных и производственных помещений.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/prito4naya_vent.png" alt="Приточная вентиляция" class="example-image" loading="lazy" decoding="async">
+                    <h3>Приточная вентиляция</h3>
+                    <p>Подбор и внедрение ПВУ с рекуперацией и фильтрацией.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/pushkinec.png" alt="Пушкинец" class="example-image" loading="lazy" decoding="async">
+                    <h3>Пушкинец</h3>
+                    <p>Система кондиционирования и вентиляции для культурного объекта.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/sanatorium-white-nights2.png" alt="Санаторий Белые ночи — корпус 2" class="example-image" loading="lazy" decoding="async">
+                    <h3>Санаторий Белые ночи — корпус 2</h3>
+                    <p>Расширение климатических систем с учётом новых нагрузок.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/sistem_vent.png" alt="Система вентиляции" class="example-image" loading="lazy" decoding="async">
+                    <h3>Система вентиляции</h3>
+                    <p>Баланс притока и вытяжки, правильные скорости и шум.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/souz.png" alt="СОЮЗ" class="example-image" loading="lazy" decoding="async">
+                    <h3>СОЮЗ</h3>
+                    <p>Инженерные системы для коммерческого пространства.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/teplovoy_nasos.png" alt="Тепловой насос" class="example-image" loading="lazy" decoding="async">
+                    <h3>Тепловой насос</h3>
+                    <p>Тёплый дом при низких издержках: современная тепловая техника.</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/teplovoy_nasos_2.png" alt="Тепловой насос 2" class="example-image" loading="lazy" decoding="async">
+                    <h3>Тепловой насос — проект 2</h3>
+                    <p>Оптимизация потребления и интеграция с ГВС.</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/teplovoy_nasos_3.png" alt="Тепловой насос 3" class="example-image" loading="lazy" decoding="async">
+                    <h3>Тепловой насос — проект 3</h3>
+                    <p>Гибридные решения и зональное управление.</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/teplovoy_nasos_4.png" alt="Тепловой насос 4" class="example-image" loading="lazy" decoding="async">
+                    <h3>Тепловой насос — проект 4</h3>
+                    <p>Максимальная эффективность в холодном климате.</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/udalenniy_dostup.png" alt="Удалённый доступ" class="example-image" loading="lazy" decoding="async">
+                    <h3>Удалённый доступ</h3>
+                    <p>Мониторинг и управление инженерией через интернет.</p>
+                    <div class="example-details">
+                        <span class="example-type">Автоматизация</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/vent_pool.png" alt="Вентиляция бассейна — проект 2" class="example-image" loading="lazy" decoding="async">
+                    <h3>Вентиляция бассейна — проект 2</h3>
+                    <p>Осушение и комфортный микроклимат чаши бассейна.</p>
+                    <div class="example-details">
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <img src="examples/WILLIAM-BASS PUB.jpg" alt="WILLIAM-BASS PUB" class="example-image" loading="lazy" decoding="async">
+                    <h3>WILLIAM-BASS PUB</h3>
+                    <p>Инженерные системы для гастро-паба: свежий воздух и комфорт.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -160,6 +352,13 @@
                         <a href="tel:+79216433297">+7 921 643-32-97</a>
                         <a href="mailto:igor.kuznetsov@gmail.com">igor.kuznetsov@gmail.com</a>
                     </div>
+                    <p style="margin-top:10px;">188660, Ленинградская обл., дер. Порошкино, ул.Березовая, уч.8</p>
+                    <div class="icon-links" style="margin-top:6px;">
+                        <a href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22"></a>
+                        <a href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram"><img src="vektor/telegram.svg" alt="Telegram" width="22" height="22"></a>
+                        <a href="https://yandex.ru/maps/?text=188660,%20Порошкино,%20Березовая%20уч.8" target="_blank" rel="noopener" aria-label="Яндекс Карты"><img src="vektor/Yandex.png" alt="Яндекс Карты" width="22" height="22"></a>
+                        <a href="https://2gis.ru/search/188660%20Порошкино%20Березовая%20уч%208" target="_blank" rel="noopener" aria-label="2ГИС"><img src="vektor/2GIS.png" alt="2ГИС" width="22" height="22"></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -174,6 +373,15 @@
                 <div class="modal-body" id="service-modal-body"></div>
             </div>
         </div>
+    </div>
+
+    <div class="floating-actions" aria-label="Быстрые действия">
+        <button class="fab fab-up" id="fab-up" title="Наверх" aria-label="Наверх">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5l7 7M12 5l-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
+        <button class="fab fab-contact" id="fab-contact" title="Связаться" aria-label="Связаться">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 4h16v12H5l-1 4z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
     </div>
 
     <script src="js/script.js?v=151" defer></script>

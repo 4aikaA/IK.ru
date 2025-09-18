@@ -3,6 +3,7 @@
     --dark-blue: #1C202B;
     --dark-teal: #0d9488;
     --orange: #EF6F38;
+    --teal-accent: #158771; /* обновлённый дополнительный цвет */
     --white: #ffffff;
     --gray-light: #f8fafc;
     --gray: #64748b;
@@ -211,16 +212,46 @@ body {
     transform: translateY(-2px);
 }
 
+/* White + teal outlined style for secondary CTA (Связаться) */
 .btn-secondary {
-    background: transparent;
-    color: var(--white);
-    border-color: var(--white);
+    background: #fff !important;
+    color: var(--teal-accent) !important;
+    border: 2px solid var(--teal-accent) !important;
+    box-shadow: 0 6px 14px rgba(21,135,113,.10) !important;
 }
-
+.btn-secondary::after { /* сохраняем блик */ }
 .btn-secondary:hover {
-    background: var(--white);
-    color: var(--dark-blue);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 16px 32px rgba(21,135,113,.20), 0 0 0 3px rgba(21,135,113,.18) !important;
+    background: #f0fffb !important; /* лёгкий бирюзовый оттенок */
 }
+.btn-secondary:active { transform: translateY(-1px) scale(.99); box-shadow: 0 10px 20px rgba(21,135,113,.18) !important; }
+.btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(21,135,113,.30), 0 8px 20px rgba(21,135,113,.20) !important; }
+
+/* Teal style for secondary CTA (Связаться) */
+.btn-secondary {
+    position: relative;
+    background: var(--teal-accent);
+    color: #fff;
+    border-color: var(--teal-accent);
+    box-shadow: 0 6px 14px rgba(21,135,113,.18);
+    overflow: hidden;
+    transition: transform .2s ease, box-shadow .25s ease, background-color .2s ease;
+}
+.btn-secondary::after {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.4) 50%, rgba(255,255,255,0) 100%);
+    transform: translateX(-120%) skewX(-20deg);
+    transition: transform .6s ease;
+}
+.btn-secondary:hover {
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 14px 28px rgba(21,135,113,.28), 0 0 0 3px rgba(21,135,113,.18);
+}
+.btn-secondary:hover::after { transform: translateX(150%) skewX(-20deg); }
+.btn-secondary:active { transform: translateY(-1px) scale(.99); box-shadow: 0 10px 20px rgba(21,135,113,.22); }
+.btn-secondary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(21,135,113,.30), 0 8px 20px rgba(21,135,113,.22); }
 
 .hero-image {
     text-align: center;
@@ -267,6 +298,15 @@ body {
     gap: 30px;
 }
 
+/* Интерактивность карточек услуг */
+.service-card { position: relative; will-change: transform, box-shadow; transition: transform .2s ease, box-shadow .2s ease; }
+.service-card:focus-within, .service-card:focus-visible { outline: 2px solid var(--teal-accent); outline-offset: 3px; }
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 14px 36px rgba(0,0,0,.18), 0 0 0 3px rgba(239,111,56,.10); }
+.service-card:active { transform: translateY(-2px) scale(.99); }
+.service-card .service-icon { transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.service-card:hover .service-icon { transform: scale(1.06); background: rgba(21,135,113,.12); box-shadow: 0 0 0 3px rgba(21,135,113,.18); }
+
+
 .service-card {
     background: var(--white);
     padding: 30px;
@@ -309,6 +349,14 @@ body {
     color: var(--gray);
     line-height: 1.6;
 }
+
+/* Glow sweep effect */
+.service-card::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(120deg, rgba(255,255,255,0) 0%, rgba(255,255,255,.35) 50%, rgba(255,255,255,0) 100%); transform: translateX(-120%) skewX(-20deg); transition: transform .6s ease; }
+.service-card:hover::after { transform: translateX(150%) skewX(-20deg); }
+
+/* Icon bounce */
+@keyframes icon-bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-3px); } }
+.service-card:hover .service-icon img { animation: icon-bounce .6s ease; }
 
 /* Адаптивность */
 @media (max-width: 768px) {
@@ -573,16 +621,50 @@ body {
 }
 
 .example-card h3 {
-    padding: 20px 20px 10px;
+    padding: 22px 22px 10px;
     font-size: 18px;
     font-weight: 600;
     color: var(--dark-blue);
 }
 
 .example-card p {
-    padding: 0 20px 20px;
+    padding: 0 22px 14px;
     color: var(--gray);
     font-size: 14px;
+    line-height: 1.5;
+}
+
+/* Accented badges for example details */
+.example-details {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 0 22px 22px;
+}
+
+.example-details .example-type,
+.example-details .example-area {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+.example-details .example-type {
+    background: rgba(21, 135, 113, 0.12);
+    color: var(--teal-accent);
+    border: 1px solid rgba(21, 135, 113, 0.35);
+}
+
+.example-details .example-area {
+    background: rgba(28, 32, 43, 0.08);
+    color: var(--dark-blue);
+    border: 1px solid rgba(28, 32, 43, 0.2);
 }
 
 .text-center {
@@ -803,20 +885,7 @@ body:not(.index-page) .nav-menu a:hover { color: var(--orange); }
 
 /* Hide elements not used on index header */
 body:not(.index-page) .burger,
-body:not(.index-page) .mobile-menu,
-body:not(.index-page) .header-phone { display: none !important; }
-
-/* Unify header on inner pages to match index header */
-body:not(.index-page) .nav { display: flex; gap: 24px; align-items: center; }
-body:not(.index-page) .nav-menu { display: flex; gap: 24px; list-style: none; margin: 0; padding: 0; }
-body:not(.index-page) .nav-menu li { margin: 0; padding: 0; }
-body:not(.index-page) .nav-menu a { text-decoration: none; color: var(--gray-dark); font-weight: 500; }
-body:not(.index-page) .nav-menu a:hover { color: var(--orange); }
-
-/* Hide elements not used on index header */
-body:not(.index-page) .burger,
-body:not(.index-page) .mobile-menu,
-body:not(.index-page) .header-phone { display: none !important; }
+body:not(.index-page) .mobile-menu { display: none !important; }
 
 /* About stats badges  highlighted */
 .about-stats { gap: 16px; }
@@ -886,8 +955,13 @@ body:not(.index-page) .header-phone { display: none !important; }
 	background: #1C202B;
 	background-image: none;
 	color: #fff;
-	padding: 60px 0;
+	padding: 70px 0 60px;
 }
+/* Make Examples and Cooperation hero compact like About: override global 100vh */
+.examples-page .hero,
+.cooperation-page .hero { min-height: auto; }
+.examples-page .hero { margin-top: 72px; }
+.cooperation-page .hero { margin-top: 72px; }
 
 .examples-page .hero-title,
 .cooperation-page .hero-title,
@@ -897,7 +971,7 @@ body:not(.index-page) .header-phone { display: none !important; }
 	letter-spacing: -0.02em;
 	font-size: clamp(28px, 4.2vw, 52px);
 	margin: 0;
-	text-align: left;
+	text-align: center;
 }
 
 .examples-page .hero-description,
@@ -999,49 +1073,27 @@ body:not(.index-page) .header-phone { display: none !important; }
     .hero-buttons .btn { width: 180px; height: 48px; }
 }
 
-/* Бургер и мобильное меню */
-.burger { display: none; width: 42px; height: 36px; border: 0; background: transparent; padding: 0; cursor: pointer; align-items: center; justify-content: center; gap: 5px; }
-.burger span { display: block; width: 24px; height: 2px; background: #1C202B !important; border-radius: 2px; }
-.burger span { background: #1C202B; transition: background-color .2s ease; }
-.burger:hover span, .burger:focus-visible span { background: #1C202B; }
-
-.mobile-menu { position: fixed; inset: 0; background: rgba(0,0,0,.45); display: none; z-index: 1200; }
-.mobile-menu.active { display: block; }
-.mobile-menu__panel { position: absolute; top: 0; right: 0; width: 78%; max-width: 360px; height: 100%; background: #fff; box-shadow: -10px 0 30px rgba(0,0,0,.15); padding: 18px 18px 28px; display: flex; flex-direction: column; gap: 16px; }
-.mobile-menu-close { align-self: flex-end; width: 36px; height: 36px; border: 0; background: transparent; font-size: 22px; cursor: pointer; }
-.mobile-nav-menu { display: flex; flex-direction: column; gap: 14px; }
-.mobile-nav-menu a { color: var(--dark-blue); text-decoration: none; font-weight: 600; padding: 10px 12px; border-radius: 8px; }
-.mobile-nav-menu a:hover { background: var(--gray-light); }
+/* Бургер (SVG) */
+.burger { display: none; width: 40px; height: 40px; border: 0; background: transparent; padding: 0; cursor: pointer; align-items: center; justify-content: center; }
+.burger svg { width: 26px; height: 26px; stroke: #1C202B; stroke-width: 2.2; fill: none; vector-effect: non-scaling-stroke; }
+.burger:focus-visible { outline: 2px solid rgba(28,32,43,.35); outline-offset: 2px; }
 
 @media (max-width: 768px) {
-    .header-content { padding: 10px 0; }
-    .header { box-shadow: 0 1px 8px rgba(0,0,0,.08); }
     .burger { display: inline-flex; }
-    .nav-menu { display: none; }
-    .header-services-icons { display: none; }
-    .hero { padding-top: 104px; }
 }
 
+/* Мобильный горизонтальный скролл услуг через flex (фикс ширины 80%) */
 @media (max-width: 768px) {
-    .services-grid {
-        display: grid;
-        grid-auto-flow: column;
-        grid-auto-columns: 80%;
-        overflow-x: auto;
-        gap: 16px;
-        padding: 6px 6px 12px;
-        scroll-snap-type: x mandatory;
-        -webkit-overflow-scrolling: touch;
-    }
-    .service-card {
-        scroll-snap-align: start;
-        min-height: 100%;
-    }
-    .services-grid::-webkit-scrollbar { height: 6px; }
-    .services-grid::-webkit-scrollbar-thumb { background: rgba(0,0,0,.25); border-radius: 4px; }
+    .services-grid { display: flex; overflow-x: auto; gap: 16px; padding: 6px 6px 12px; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+    .services-grid .service-card { flex: 0 0 80%; scroll-snap-align: start; }
 }
 
-/* Партнёры: непрерывная полоса */
+.icon-links { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+.icon-links a { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; }
+.icon-links img { width: 24px !important; height: 24px !important; object-fit: contain; display: block; }
+@media (max-width: 480px) { .icon-links a { width: 28px; height: 28px; } .icon-links img { width: 24px !important; height: 24px !important; } }
+
+/* Партнёры: непрерывная полоса (About page) */
 .partners-section { margin-top: 28px; }
 .partners-section h3 { text-align: center; color: var(--dark-blue); margin-bottom: 14px; }
 .partners-carousel { position: relative; overflow: hidden; }
@@ -1050,36 +1102,406 @@ body:not(.index-page) .header-phone { display: none !important; }
 .partners-track { display: flex; align-items: center; gap: 36px; padding: 10px 18px; }
 .partner-logo { height: 44px; width: auto; filter: grayscale(10%); opacity: .95; transition: filter .2s ease, opacity .2s ease; }
 .partner-logo:hover { filter: grayscale(0); opacity: 1; }
+@keyframes partners-scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+@media (max-width: 768px) { .partner-logo { height: 36px; } .partners-track { gap: 24px; padding: 8px 12px; } }
 
-@keyframes partners-scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+/* Точечные акценты с использованием --teal-accent */
+.header-icon:hover { box-shadow: 0 0 0 3px rgba(21,135,113,0.18); }
+.service-card:hover { box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15), 0 0 0 3px rgba(21,135,113,0.10); }
+.btn-secondary { border-color: var(--white); }
+.btn-secondary:hover { border-color: var(--teal-accent); }
+:focus-visible { outline: 2px solid var(--teal-accent); outline-offset: 2px; }
+
+/* Вспомогательный класс для редких акцентов */
+.accent-teal { color: var(--teal-accent) !important; }
+
+/* Modal (services) */
+.modal { position: fixed; inset: 0; display: none; z-index: 1400; }
+.modal.active { display: block; }
+.modal-backdrop { position: absolute; inset: 0; background: rgba(0,0,0,.55); }
+.modal-dialog { position: relative; z-index: 1; max-width: 860px; margin: 8vh auto; background: #fff; border-radius: 14px; box-shadow: 0 30px 80px rgba(0,0,0,.35); overflow: hidden; }
+.modal-close { position: absolute; top: 10px; right: 12px; width: 36px; height: 36px; background: transparent; border: 0; color: #334155; font-size: 24px; cursor: pointer; }
+.modal-content { padding: 24px; }
+.modal-title { font-size: clamp(20px, 3.2vw, 28px); font-weight: 800; color: var(--dark-blue); margin-bottom: 14px; }
+.modal-body { color: #475569; line-height: 1.6; }
+.modal-media img, .modal-media video { width: 100%; height: auto; display: block; border-radius: 10px; margin-bottom: 16px; }
+@media (max-width: 600px){ .modal-dialog { margin: 6vh 16px; } .modal-content { padding: 18px; } }
+
+/* Scrollable modal content */
+.modal-dialog { max-height: 90vh; display: flex; flex-direction: column; }
+.modal-content { display: flex; flex-direction: column; overflow: hidden; }
+.modal-body { overflow: auto; max-height: calc(90vh - 120px); -webkit-overflow-scrolling: touch; }
+
+/* Modal content typography */
+.modal-body p { margin: 0 0 12px; }
+.modal-body ul { margin: 10px 0 0; padding-left: 1.2em; list-style: disc; display: grid; gap: 8px; }
+.modal-body li::marker { color: var(--teal-accent); }
+
+/* Modal header + quick form */
+.modal-header-row { gap: 12px; }
+#modal-contact-toggle { white-space: nowrap; }
+#modal-quick-form input, #modal-quick-form textarea { font-family: inherit; font-size: 14px; }
+#modal-quick-form .btn { justify-self: start; }
+
+/* Active hover for primary CTA */
+.btn-primary { position: relative; box-shadow: 0 6px 14px rgba(239,111,56,.18); }
+.btn-primary:hover { background: #E86333; transform: translateY(-3px) scale(1.03); box-shadow: 0 14px 28px rgba(239,111,56,.28), 0 0 0 3px rgba(239,111,56,.18); }
+.btn-primary:active { transform: translateY(-1px) scale(.99); box-shadow: 0 8px 18px rgba(239,111,56,.22), 0 0 0 2px rgba(239,111,56,.20); }
+.btn-primary:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(0,169,137,.22), 0 10px 22px rgba(239,111,56,.22); }
+
+/* Text first, media after in modal */
+.modal-body { display: flex; flex-direction: column; gap: 12px; }
+.modal-media { order: 2; }
+
+/* Floating actions */
+.floating-actions { position: fixed; right: 16px; bottom: 16px; display: flex; flex-direction: column; gap: 10px; z-index: 1500; }
+.fab { width: 48px; height: 48px; border: none; border-radius: 50%; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; color: #fff; box-shadow: 0 10px 24px rgba(0,0,0,.22); transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.fab-up { background: var(--dark-blue); }
+.fab-contact { background: var(--orange); }
+.fab:hover { transform: translateY(-2px) scale(1.01); box-shadow: none; }
+.fab:active { transform: translateY(0) scale(1); }
+@media (max-width: 480px){ .floating-actions { right: 12px; bottom: 12px; } .fab { width: 52px; height: 52px; } }
+
+/* Modal header alignment: place contact button near title on the left */
+.modal-header-row { display: flex; align-items: center; gap: 12px; justify-content: flex-start !important; }
+#modal-contact-toggle { order: 0; }
+.modal-title { order: 1; }
+
+/* Center modal titles, keep contact button on the left */
+.modal-header-row { position: relative; justify-content: center !important; }
+#modal-contact-toggle { position: absolute; left: 0; top: 50%; transform: translateY(-50%); }
+.modal-title { text-align: center; margin: 0 auto; width: 100%; }
+
+/* Refined Services Cards */
+.services { background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%); }
+.service-card {
+    position: relative;
+    background: linear-gradient(180deg, #ffffff 0%, #f9fbff 100%);
+    border: 1px solid #e6eef6;
+    box-shadow: 0 6px 22px rgba(2, 8, 23, .06);
+    padding: 28px;
+    border-radius: 16px;
+    transition: transform .22s ease, box-shadow .22s ease, border-color .22s ease, background .22s ease;
+}
+.service-card::before {
+    content: "";
+    position: absolute; inset: 0; pointer-events: none;
+    background: radial-gradient(600px 120px at 0% 0%, rgba(239,111,56,.06), transparent 60%),
+                radial-gradient(600px 120px at 100% 0%, rgba(21,135,113,.06), transparent 60%);
+    border-radius: 16px;
+}
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(2, 8, 23, .12);
+    border-color: rgba(239,111,56,.45);
+}
+.service-card:focus-within { outline: 2px solid rgba(21,135,113,.3); outline-offset: 3px; }
+
+.service-icon {
+    width: 88px; height: 88px; margin-bottom: 18px;
+    background: radial-gradient(circle at 30% 30%, rgba(21,135,113,.18), rgba(239,111,56,.18));
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 3px rgba(255,255,255,.9), 0 10px 22px rgba(2,8,23,.08);
+    position: relative;
+}
+.service-icon::after {
+    content: ""; position: absolute; inset: -4px; border-radius: 50%;
+    background: linear-gradient(135deg, rgba(239,111,56,.35), rgba(21,135,113,.35));
+    filter: blur(8px); opacity: .55; z-index: -1;
+}
+.service-icon img { width: 44px; height: 44px; }
+
+.service-title {
+    font-size: 20px; font-weight: 800; color: var(--dark-blue);
+    letter-spacing: .2px; margin-bottom: 10px;
+}
+.service-description { color: #4b5563; }
+
+/* Hover micro‑animation */
+@keyframes card-pop { 0%{ transform: translateY(0) scale(1); } 50%{ transform: translateY(-2px) scale(1.01);} 100%{ transform: translateY(0) scale(1);} }
+.service-card:hover .service-icon { animation: card-pop .5s ease; }
+
+/* Thinner label for secondary CTA text */
+.btn-secondary { font-weight: 500 !important; letter-spacing: .2px; }
+
+/* Thinner label for modal/contact FAB */
+#modal-contact-toggle { font-weight: 500 !important; letter-spacing: .2px; }
+.fab-contact { font-weight: 500; }
+
+/* Text color for secondary CTA: dark blue */
+.btn-secondary { color: var(--dark-blue) !important; }
+.btn-secondary:hover { color: var(--dark-blue) !important; }
+.btn-secondary:active { color: var(--dark-blue) !important; }
+.btn-secondary:focus-visible { color: var(--dark-blue) !important; }
+
+/* Make modal contact button match hero primary CTA */
+.modal-header-row #modal-contact-toggle {
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 6px 14px rgba(239,111,56,.18);
+}
+.modal-header-row #modal-contact-toggle:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 14px 28px rgba(239,111,56,.28), 0 0 0 3px rgba(239,111,56,.18);
+}
+.modal-header-row #modal-contact-toggle:active {
+    transform: translateY(-1px) scale(.99);
+    box-shadow: 0 8px 18px rgba(239,111,56,.22), 0 0 0 2px rgba(239,111,56,.20);
+}
+.modal-header-row #modal-contact-toggle:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(21,135,113,.22), 0 10px 22px rgba(239,111,56,.22);
 }
 
-@media (max-width: 768px) {
-    .partner-logo { height: 36px; }
-    .partners-track { gap: 24px; padding: 8px 12px; }
+/* Button hover animations: pulse ring */
+@keyframes ring-orange { 0% { box-shadow: 0 6px 14px rgba(239,111,56,.18), 0 0 0 0 rgba(239,111,56,.35); } 70% { box-shadow: 0 12px 24px rgba(239,111,56,.26), 0 0 0 10px rgba(239,111,56,.0); } 100% { box-shadow: 0 10px 20px rgba(239,111,56,.22), 0 0 0 0 rgba(239,111,56,0); } }
+@keyframes ring-teal { 0% { box-shadow: 0 6px 14px rgba(21,135,113,.18), 0 0 0 0 rgba(21,135,113,.35); } 70% { box-shadow: 0 12px 24px rgba(21,135,113,.24), 0 0 0 10px rgba(21,135,113,0); } 100% { box-shadow: 0 10px 20px rgba(21,135,113,.20), 0 0 0 0 rgba(21,135,113,0); } }
+
+.btn { position: relative; overflow: hidden; }
+.btn-primary:hover { transform: translateY(-2px); animation: ring-orange .6s ease-out; }
+.btn-secondary:hover { transform: translateY(-2px) scale(1.01); animation: ring-teal .6s ease-out; }
+
+/* Корректируем активные состояния под новый эффект */
+.btn-primary:active { transform: translateY(0); }
+.btn-secondary:active { transform: translateY(0) scale(1); }
+
+/* Кнопка в модалке наследует тот же hover-эффект, что и .btn-primary */
+.modal-header-row #modal-contact-toggle:hover { animation: ring-orange .6s ease-out; }
+
+/* Modal contact button uses secondary (white + teal outline) style */
+.modal-header-row #modal-contact-toggle {
+    background: #fff !important;
+    color: var(--dark-blue) !important;
+    border: 2px solid var(--teal-accent) !important;
+    box-shadow: 0 6px 14px rgba(21,135,113,.10) !important;
+}
+.modal-header-row #modal-contact-toggle:hover {
+    transform: translateY(-2px) !important;
+    animation: ring-teal .6s ease-out !important;
+    box-shadow: 0 16px 32px rgba(21,135,113,.20), 0 0 0 3px rgba(21,135,113,.18) !important;
+    background: #f0fffb !important;
+}
+.modal-header-row #modal-contact-toggle:active { transform: translateY(0) !important; box-shadow: 0 10px 20px rgba(21,135,113,.18) !important; }
+.modal-header-row #modal-contact-toggle:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(21,135,113,.30), 0 8px 20px rgba(21,135,113,.20) !important; }
+
+/* Buttons: remove glow on hover, use minimal motion */
+.btn { transition: transform .2s ease, background-color .2s ease, border-color .2s ease; }
+.btn-primary:hover { animation: none !important; box-shadow: none !important; transform: translateY(-2px) scale(1.01); }
+.btn-secondary:hover { animation: none !important; box-shadow: none !important; transform: translateY(-2px) scale(1.01); }
+.modal-header-row #modal-contact-toggle:hover { animation: none !important; box-shadow: none !important; transform: translateY(-2px) scale(1.01) !important; }
+
+/* Restore modal contact button hover style (teal outlined with glow) */
+.modal-header-row #modal-contact-toggle:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    animation: ring-teal .6s ease-out !important;
+    box-shadow: 0 16px 32px rgba(21,135,113,.20), 0 0 0 3px rgba(21,135,113,.18) !important;
+    background: #f0fffb !important;
 }
 
-.contact-maps { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 8px; }
-.contact-maps .btn { padding: 10px 14px; }
+/* Hero bullets under title */
+.hero-bullets { list-style: none; margin: 8px auto 10px; padding: 0; max-width: 720px; display: flex; flex-direction: column; align-items: center; gap: 6px; text-align: center; }
+.hero-bullets li { position: relative; padding-left: 0; color: rgba(255,255,255,.9); font-size: clamp(14px, 2.2vw, 18px); display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+.hero-bullets li::before { content: ""; position: static; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px rgba(239,111,56,.18); flex: 0 0 8px; }
+.hero-lead-sub { color: rgba(255,255,255,.85); margin: 8px auto 22px; font-size: clamp(14px, 2.2vw, 18px); }
 
-/* Цвет иконок: EF6F38 */
-.burger span { background: #1C202B; transition: background-color .2s ease; }
-.burger:hover span, .burger:focus-visible span { background: #1C202B; }
+/* More space between hero bullets and buttons */
+.hero-bullets { margin: 12px auto 28px; }
+.hero-buttons { margin-top: 6px; }
 
-/* Перекрашиваем только иконки внутри карточек услуг, не в хедере */
-.service-icon img {
-    filter: invert(59%) sepia(64%) saturate(570%) hue-rotate(350deg) brightness(98%) contrast(96%);
+/* Align hero bullets dot column vertically */
+.hero-bullets { list-style: none; margin: 12px auto 28px; padding: 0; max-width: 720px; display: grid; gap: 8px; }
+.hero-bullets li { display: grid; grid-template-columns: 10px auto; align-items: center; gap: 10px; text-align: left; color: rgba(255,255,255,.9); font-size: clamp(14px, 2.2vw, 18px); }
+.hero-bullets li::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--orange); box-shadow: 0 0 0 3px rgba(239,111,56,.18); }
+
+/* Modal contact button: orange style */
+.modal-header-row #modal-contact-toggle {
+    background: var(--orange) !important;
+    color: #fff !important;
+    border: 2px solid var(--orange) !important;
+    box-shadow: 0 6px 14px rgba(239,111,56,.18) !important;
+}
+.modal-header-row #modal-contact-toggle:hover {
+    transform: translateY(-3px) scale(1.02) !important;
+    animation: ring-orange .6s ease-out !important;
+    box-shadow: 0 16px 32px rgba(239,111,56,.26), 0 0 0 3px rgba(239,111,56,.18) !important;
+    background: #E86333 !important;
+}
+.modal-header-row #modal-contact-toggle:active { transform: translateY(-1px) scale(.99) !important; box-shadow: 0 10px 20px rgba(239,111,56,.22) !important; }
+.modal-header-row #modal-contact-toggle:focus-visible { outline: none; box-shadow: 0 0 0 3px rgba(239,111,56,.28), 0 8px 20px rgba(239,111,56,.22) !important; }
+
+/* Force hero bullets into a single aligned column */
+.hero-bullets { display: grid !important; grid-auto-rows: auto; align-items: start; }
+.hero-bullets li { display: grid !important; grid-template-columns: 12px 1fr; align-items: start; gap: 10px; text-align: left !important; }
+.hero-bullets li::before { margin-top: 6px; }
+
+/* Center bullet dots vertically with text */
+.hero-bullets li { align-items: center !important; }
+.hero-bullets li::before { margin-top: 0; align-self: center; transform: translateY(1px); }
+
+/* Modal contact button hover: standard (no glow) */
+.modal-header-row #modal-contact-toggle:hover {
+    animation: none !important;
+    box-shadow: none !important;
+    transform: translateY(-2px) scale(1.01) !important;
 }
 
-/* Иконки в хедере: всегда #1C202B, без исчезаний */
-.header-icon img {
-    filter: brightness(0) saturate(100%) invert(12%) sepia(16%) saturate(700%) hue-rotate(185deg) brightness(92%) contrast(96%) !important;
-    -webkit-filter: brightness(0) saturate(100%) invert(12%) sepia(16%) saturate(700%) hue-rotate(185deg) brightness(92%) contrast(96%) !important;
+/* Larger and friendlier close button for modal */
+.modal-close {
+    width: 44px !important;
+    height: 44px !important;
+    padding: 0 !important;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    cursor: pointer;
 }
-.header-icon:hover img { filter: inherit; -webkit-filter: inherit; }
+.modal-close:hover { background: rgba(0,0,0,.06); }
+.modal-close:focus-visible { outline: 2px solid var(--teal-accent); outline-offset: 2px; }
 
-.icon-links { display: flex; gap: 12px; align-items: center; margin-top: 6px; }
-.icon-links img { width: 28px; height: 28px; display: block; }
-@media (max-width: 480px) { .icon-links img { width: 32px; height: 32px; } }
+/* Improve left-side hover hit area for modal close */
+.modal-close { position: absolute; z-index: 5; }
+.modal-close::before { content: ""; position: absolute; inset: -6px -6px -6px -12px; /* расширяем слева */ border-radius: 10px; }
+
+/* Fix clickability of floating actions */
+.floating-actions { pointer-events: none; z-index: 2000; }
+.floating-actions .fab { pointer-events: auto; }
+
+/* FINAL: Standard hover for modal contact button (no glow) */
+.modal-header-row #modal-contact-toggle { transition: transform .2s ease, background-color .2s ease, border-color .2s ease; }
+.modal-header-row #modal-contact-toggle:hover { animation: none !important; box-shadow: none !important; transform: translateY(-2px) scale(1.01) !important; }
+.modal-header-row #modal-contact-toggle:active { transform: translateY(0) scale(1) !important; }
+
+/* Header layout for service modal: left button + centered title */
+.modal-header-row { display: grid !important; grid-template-columns: auto 1fr; align-items: center; gap: 12px; position: relative; justify-content: initial !important; }
+#modal-contact-toggle { position: static !important; margin: 0; grid-column: 1; transform: translateY(0) scale(1) !important; }
+.modal-title { grid-column: 2; text-align: center !important; margin: 0 auto; width: 100%; }
+
+/* Ensure contact modal overlays above service modal (keep service open behind) */
+#contact-modal { z-index: 1600 !important; }
+
+/* Cooperation cards: distinct animation using project colors */
+.cooperation .service-card {
+    background: linear-gradient(180deg, #ffffff 0%, #f7fbfb 100%);
+    border: 1px solid rgba(21,135,113,.22);
+    position: relative;
+    overflow: hidden;
+}
+.cooperation .service-card::after {
+    content: "";
+    position: absolute; left: 0; top: 0; height: 4px; width: 0;
+    background: linear-gradient(90deg, var(--orange), var(--teal-accent));
+    transition: width .35s ease;
+}
+.cooperation .service-card:hover::after { width: 100%; }
+.cooperation .service-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(2,8,23,.10), 0 0 0 2px rgba(21,135,113,.18);
+    border-color: rgba(239,111,56,.45);
+}
+.cooperation .service-card .service-icon { background: #f0fffb; box-shadow: inset 0 0 0 3px #fff, 0 8px 18px rgba(2,8,23,.06); }
+.cooperation .service-card .service-icon img { transition: transform .25s ease; }
+.cooperation .service-card:hover .service-icon img { transform: translateY(-2px) rotate(-2deg) scale(1.04); }
+
+/* Constrain images inside contact modal to avoid oversized SVGs */
+#contact-modal img { width: 24px; height: 24px; object-fit: contain; }
+
+/* Contact modal UI (restored) */
+#contact-modal .modal-dialog { max-width: 560px; border-radius: 14px; overflow: hidden; background: #fff; }
+#contact-modal .modal-title { margin: 0; padding: 14px 16px; color: #fff; background: linear-gradient(135deg, #0c344a, #102536 60%); }
+#contact-modal .modal-close { top: 8px; right: 8px; color: #fff; }
+#contact-modal .modal-content { padding: 0; background: #fff; }
+#contact-modal .modal-body { padding: 16px; }
+#contact-modal input, #contact-modal textarea { width: 100%; padding: 12px 14px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 14px; font-family: inherit; }
+#contact-modal input:focus, #contact-modal textarea:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 3px rgba(239,111,56,.15); }
+#contact-modal .form-row { display: grid; gap: 12px; }
+#contact-modal .actions { display: grid; grid-template-columns: 1fr auto; gap: 12px; margin-top: 8px; align-items: center; }
+#contact-modal .btn-send { background: var(--orange); color: #fff; border: 2px solid var(--orange); padding: 12px 18px; border-radius: 10px; transition: transform .2s ease; }
+#contact-modal .btn-send:hover { transform: translateY(-2px) scale(1.01); }
+#contact-modal .btn-cancel { background: #f5f7fb; color: var(--dark-blue); border: 2px solid #e2e8f0; padding: 12px 18px; border-radius: 10px; }
+#contact-modal .messengers { margin-top: 16px; text-align: center; color: #64748b; font-size: 13px; }
+#contact-modal .messenger-buttons { margin-top: 10px; display: flex; gap: 10px; justify-content: center; }
+#contact-modal .messenger-buttons a { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 10px; color: #fff; text-decoration: none; font-weight: 600; }
+#contact-modal .wa { background: #25D366; }
+#contact-modal .tg { background: #2AABEE; }
+#contact-modal .messenger-buttons img { width: 18px; height: 18px; }
+
+/* Spacing between hero and examples section on Examples page */
+.examples-page .examples { margin-top: 32px; }
+
+/* Hero stats badge (Examples only) */
+.examples-page .hero-stats { display: flex; justify-content: center; margin-top: 10px; }
+.examples-page .stat-badge {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 12px;
+	font-size: clamp(12px, 1.2vw, 14px);
+	border-radius: 999px;
+	color: #eaf2f7;
+	background: rgba(255,255,255,0.06);
+	border: 1px solid rgba(255,255,255,0.18);
+	overflow: hidden;
+}
+/* Mini pill for number */
+.examples-page .stat-badge strong {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: linear-gradient(135deg, rgba(239,111,56,.18), rgba(239,111,56,.32));
+	box-shadow: inset 0 0 0 1px rgba(239,111,56,.5);
+	color: var(--orange);
+	font-size: clamp(22px, 4.2vw, 38px);
+	line-height: 1;
+}
+/* Subtle sweep highlight */
+@keyframes sweepGlow { from { left: -40%; } to { left: 140%; } }
+.examples-page .stat-badge::after {
+	content: "";
+	position: absolute; top: 0; left: -40%; height: 100%; width: 40%;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+	filter: blur(2px);
+	animation: sweepGlow 3.5s ease-in-out infinite;
+	pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.examples-page .stat-badge::after { animation: none; }
+}
+
+/* About page mini badge */
+.about-page .hero-stats { display: flex; justify-content: center; margin-top: 10px; }
+.about-page .stat-badge {
+	position: relative;
+	display: inline-flex;
+	align-items: center;
+	gap: 10px;
+	padding: 8px 12px;
+	font-size: clamp(12px, 1.2vw, 14px);
+	border-radius: 999px;
+	color: #eaf2f7;
+	background: rgba(255,255,255,0.06);
+	border: 1px solid rgba(255,255,255,0.18);
+	overflow: hidden;
+}
+.about-page .stat-badge strong {
+	display: inline-block;
+	padding: 4px 10px;
+	border-radius: 999px;
+	background: linear-gradient(135deg, rgba(239,111,56,.18), rgba(239,111,56,.32));
+	box-shadow: inset 0 0 0 1px rgba(239,111,56,.5);
+	color: var(--orange);
+	font-size: clamp(22px, 4.2vw, 38px);
+	line-height: 1;
+}
+.about-page .stat-badge::after {
+	content: "";
+	position: absolute; top: 0; left: -40%; height: 100%; width: 40%;
+	background: linear-gradient(90deg, transparent, rgba(255,255,255,.18), transparent);
+	filter: blur(2px);
+	animation: sweepGlow 3.8s ease-in-out infinite;
+	pointer-events: none;
+}
+@media (prefers-reduced-motion: reduce) {
+	.about-page .stat-badge::after { animation: none; }
+}

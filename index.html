@@ -30,7 +30,7 @@
                     <span class="logo-surname">Кузнецов</span>
                 </a>
                 <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false">
-                    <span></span><span></span><span></span>
+                    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
                 </button>
                 <div class="header-services-icons" aria-label="Быстрый доступ к услугам">
                     <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
@@ -61,6 +61,14 @@
                     <a href="examples.html" class="nav-link">Примеры работ</a>
                     <a href="cooperation.html" class="nav-link">Сотрудничество</a>
                 </nav>
+                <div class="header-phone" aria-label="Мессенджеры">
+                    <a class="header-messenger" href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp">
+                        <img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22">
+                    </a>
+                    <a class="header-messenger" href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram">
+                        <img src="vektor/telegram.svg" alt="Telegram" width="22" height="22">
+                    </a>
+                </div>
             </div>
         </div>
     </header>
@@ -87,8 +95,14 @@
                         </div>
                     </div>
                     <div class="hero-center">
-                        <h1 class="hero-title">Инженерные решения<br>для вашего успеха</h1>
-                        <p class="hero-lead">Профессиональные услуги инженера: проектирование, консультации, сопровождение. Надёжный подход к задачам любой сложности. Узнайте больше о моём опыте и реализованных проектах.</p>
+                        <h1 class="hero-title">Инженерные решения</h1>
+                        <p class="hero-lead">Профессиональные услуги инженера.</p>
+                        <ul class="hero-bullets">
+                            <li>Проектирование, консультации, сопровождение</li>
+                            <li>Надёжный подход к задачам любой сложности</li>
+                            <li>Опыт — десятки реализованных проектов</li>
+                        </ul>
+                        <p class="hero-lead-sub">Узнайте больше о моём опыте и реализованных проектах.</p>
                         <div class="hero-buttons">
                             <a href="#services" class="btn btn-primary">Услуги</a>
                             <a href="#contact" class="btn btn-secondary">Связаться</a>
@@ -154,6 +168,13 @@
                         </div>
                         <h3 class="service-title">Автоматизация и диспетчеризация</h3>
                         <p class="service-description">Умные системы управления инженерными системами</p>
+                    </div>
+                    <div class="service-card" data-service="aereco">
+                        <div class="service-icon">
+                            <img src="vektor/aereco.png" alt="Aereco" loading="lazy" decoding="async">
+                        </div>
+                        <h3 class="service-title">Вентиляция Aereco</h3>
+                        <p class="service-description">Гигрорегулируемые решения естественной вентиляции</p>
                     </div>
                 </div>
             </div>
@@ -296,12 +317,52 @@
                         <a href="tel:+79216433297">+7 921 643-32-97</a>
                         <a href="mailto:igor.kuznetsov@gmail.com">igor.kuznetsov@gmail.com</a>
                     </div>
+                    <p style="margin-top:10px;">188660, Ленинградская обл., дер. Порошкино, ул.Березовая, уч.8</p>
+                    <div class="icon-links" style="margin-top:6px;">
+                        <a href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22"></a>
+                        <a href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram"><img src="vektor/telegram.svg" alt="Telegram" width="22" height="22"></a>
+                        <a href="https://yandex.ru/maps/?text=188660,%20Порошкино,%20Березовая%20уч.8" target="_blank" rel="noopener" aria-label="Яндекс Карты"><img src="vektor/Yandex.png" alt="Яндекс Карты" width="22" height="22"></a>
+                        <a href="https://2gis.ru/search/188660%20Порошкино%20Березовая%20уч%208" target="_blank" rel="noopener" aria-label="2ГИС"><img src="vektor/2GIS.png" alt="2ГИС" width="22" height="22"></a>
+                    </div>
                 </div>
             </div>
         </div>
     </footer>
 
+    <div class="modal" id="service-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="service-modal-title">
+        <div class="modal-backdrop" data-close-modal></div>
+        <div class="modal-dialog" role="document">
+            <button class="modal-close" type="button" aria-label="Закрыть" data-close-modal>&times;</button>
+            <div class="modal-content">
+                <div class="modal-header-row" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
+                    <h2 class="modal-title" id="service-modal-title" style="margin:0;"> </h2>
+                    <button class="btn btn-primary" id="modal-contact-toggle" type="button">Связаться</button>
+                </div>
+                <div id="modal-quick-form" style="display:none; margin:12px 0 6px;">
+                    <form id="quick-form">
+                        <div style="display:grid; gap:10px; grid-template-columns:1fr;">
+                            <input type="text" id="q-name" placeholder="Ваше имя" required style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            <input type="tel" id="q-phone" placeholder="Телефон" style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            <input type="email" id="q-email" placeholder="Email" required style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
+                            <textarea id="q-msg" rows="3" placeholder="Коротко о задаче" style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;"></textarea>
+                            <button class="btn btn-primary" type="submit">Отправить</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-body" id="service-modal-body"></div>
+            </div>
+        </div>
+    </div>
+    
     <script src="js/script.js?v=151" defer></script>
+    <div class="floating-actions" aria-label="Быстрые действия">
+        <button class="fab fab-up" id="fab-up" title="Наверх" aria-label="Наверх">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5l7 7M12 5l-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
+        <button class="fab fab-contact" id="fab-contact" title="Связаться" aria-label="Связаться">
+            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 4h16v12H5l-1 4z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+        </button>
+    </div>
 </body>
 </html>
 
