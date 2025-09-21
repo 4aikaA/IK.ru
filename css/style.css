@@ -1505,3 +1505,46 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 @media (prefers-reduced-motion: reduce) {
 	.about-page .stat-badge::after { animation: none; }
 }
+
+@media (max-width: 768px) {
+	.header { padding: 6px 0; }
+	/* Показать компактный паровозик в хедере */
+	.header .header-services-icons { 
+		display: flex !important; 
+		gap: 8px; 
+		max-width: 55vw; 
+		overflow-x: auto; 
+		padding: 0 4px; 
+		-ms-overflow-style: none; 
+		scrollbar-width: none; 
+		align-items: center;
+	}
+	.header .header-services-icons::-webkit-scrollbar { display: none; }
+	.header .header-services-icons .header-icon { 
+		width: 32px; height: 32px; 
+		flex: 0 0 auto; 
+		padding: 4px; 
+		border-radius: 8px; 
+		background: #fff; 
+		box-shadow: 0 2px 8px rgba(2,8,23,.06);
+	}
+	.header .header-services-icons .header-icon img { width: 20px; height: 20px; }
+	/* Скрыть основное меню, чтобы не раздвигать шапку */
+	.header-nav, .nav-menu { display: none !important; }
+}
+
+/* Service modal header: force correct layout across pages */
+.modal#service-modal .modal-content { display: flex; flex-direction: column; }
+.modal#service-modal .modal-header-row { 
+	display: flex !important; 
+	align-items: center !important; 
+	justify-content: space-between !important; 
+	gap: 12px !important; 
+	position: sticky; top: 0; z-index: 2; 
+	background: #fff; padding: 12px 0 8px; 
+	border-bottom: 1px solid #eef2f7;
+}
+.modal#service-modal .modal-title { font-size: clamp(18px, 2.6vw, 24px); font-weight: 800; margin: 0; color: var(--dark-blue); }
+.modal#service-modal .modal-body { overflow: auto; padding-top: 8px; }
+.modal#service-modal .modal-body .modal-media { margin-top: 12px; }
+.modal#service-modal .modal-body img { width: 100%; height: auto; display: block; border-radius: 8px; }

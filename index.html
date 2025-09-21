@@ -118,7 +118,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </div>\n        </section>
 
         <section class="services" id="services">
             <div class="container">
@@ -178,14 +178,14 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </div>\n        </section>
 
-        <section class="about-preview" id="about">
+        <section class="about-preview" id="about" style="background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%); padding: 80px 0;">
             <div class="container">
-                <div class="about-preview__content">
+                <div class="about-preview__content" style="display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;">
                     <div class="about-preview__text">
-                        <h2 class="section-title">О <span class="highlight">себе</span></h2>
-                        <p>15+ лет в отрасли инженерных систем. Реализовал более 300 проектов в России и Европе. Специализируюсь на проектировании, монтаже и обслуживании современных инженерных систем.</p>
+                        <h2 class="section-title" style="font-size: 2.5em; font-weight: 700; color: #1C202B; margin-bottom: 30px;">О <span class="highlight" style="color: #EF6F38;">себе</span></h2>
+                        <p style="font-size: 1.2em; line-height: 1.7; color: #334155; margin-bottom: 30px; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 4px solid #0d9488;">С 2008 года я специализируюсь на проектировании и монтаже систем вентиляции, кондиционирования и отопления. За это время мы с командой реализовали более 300 объектов в жилом и коммерческом сегментах.</p>
                         <div class="about-stats">
                             <div class="stat-item">
                                 <div class="stat-number">15+</div>
@@ -207,7 +207,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </div>\n        </section>
 
         <section class="examples-preview">
             <div class="container">
@@ -241,7 +241,7 @@
                     <a href="examples.html" class="btn btn-primary">Все примеры работ</a>
                 </div>
             </div>
-        </section>
+            </div>\n        </section>
 
         <section class="contact" id="contact">
             <div class="container">
@@ -294,7 +294,7 @@
                     </div>
                 </div>
             </div>
-        </section>
+            </div>\n        </section>
     </main>
 
     <footer class="footer">
@@ -335,19 +335,8 @@
             <button class="modal-close" type="button" aria-label="Закрыть" data-close-modal>&times;</button>
             <div class="modal-content">
                 <div class="modal-header-row" style="display:flex; align-items:center; justify-content:space-between; gap:12px;">
-                    <h2 class="modal-title" id="service-modal-title" style="margin:0;"> </h2>
-                    <button class="btn btn-primary" id="modal-contact-toggle" type="button">Связаться</button>
-                </div>
-                <div id="modal-quick-form" style="display:none; margin:12px 0 6px;">
-                    <form id="quick-form">
-                        <div style="display:grid; gap:10px; grid-template-columns:1fr;">
-                            <input type="text" id="q-name" placeholder="Ваше имя" required style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
-                            <input type="tel" id="q-phone" placeholder="Телефон" style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
-                            <input type="email" id="q-email" placeholder="Email" required style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;">
-                            <textarea id="q-msg" rows="3" placeholder="Коротко о задаче" style="padding:10px; border:1px solid #e2e8f0; border-radius:8px;"></textarea>
-                            <button class="btn btn-primary" type="submit">Отправить</button>
-                        </div>
-                    </form>
+                    <h2 class="modal-title" id="service-modal-title" style="margin:0; text-align:center; flex:1;">Услуга</h2>
+                    <button class="btn btn-primary" data-open-contact type="button">Связаться</button>
                 </div>
                 <div class="modal-body" id="service-modal-body"></div>
             </div>
