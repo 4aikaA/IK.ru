@@ -41,27 +41,27 @@ const serviceContent = {
     },
     ac: {
         title: "Системы кондиционирования",
-        body: "<p>Проектирование, поставка и монтаж систем кондиционирования воздуха для квартир, домов и коммерческих объектов.</p><ul><li>Сплит-системы</li><li>Мульти-сплит системы</li><li>VRV/VRF системы</li><li>Центральные системы кондиционирования</li></ul><div class=\"modal-media\"><img src=\"uslugi/конд.jpg\" alt=\"Системы кондиционирования\" /></div>"
+        body: "<p>Проектирование, поставка и монтаж систем кондиционирования воздуха для квартир, домов и коммерческих объектов.</p><ul><li>Сплит-системы</li><li>Мульти-сплит системы</li><li>VRV/VRF системы</li><li>Центральные системы кондиционирования</li></ul><div class=\"modal-media\"><img src=\"uslugi/Конди_сис.png\" alt=\"Системы кондиционирования\" /></div>"
     },
     heating: {
         title: "Системы отопления",
-        body: "<p>Энергоэффективные решения отопления: радиаторные и напольные системы, тепловые насосы, котельные.</p><ul><li>Радиаторное отопление</li><li>Теплый пол</li><li>Тепловые насосы</li><li>Котельные установки</li></ul><div class=\"modal-media\"><img src=\"uslugi/ото.jpg\" alt=\"Системы отопления\" /></div>"
+        body: "<p>Энергоэффективные решения отопления: радиаторные и напольные системы, тепловые насосы, котельные.</p><ul><li>Радиаторное отопление</li><li>Теплый пол</li><li>Тепловые насосы</li><li>Котельные установки</li></ul><div class=\"modal-media\"><img src=\"uslugi/Отоплен_сис.png\" alt=\"Системы отопления\" /></div>"
     },
     ventilation: {
         title: "Вентиляционные системы",
-        body: "<p>Проектирование и монтаж приточно-вытяжных систем с рекуперацией. Комфортный микроклимат круглый год.</p><ul><li>Приточно-вытяжная вентиляция</li><li>Рекуперация тепла</li><li>Фильтрация воздуха</li><li>Увлажнение и осушение</li></ul><div class=\"modal-media\"><img src=\"uslugi/вент.jpg\" alt=\"Вентиляционные системы\" /></div>"
+        body: "<p>Проектирование и монтаж приточно-вытяжных систем с рекуперацией. Комфортный микроклимат круглый год.</p><ul><li>Приточно-вытяжная вентиляция</li><li>Рекуперация тепла</li><li>Фильтрация воздуха</li><li>Увлажнение и осушение</li></ul><div class=\"modal-media\"><img src=\"uslugi/Вент_сис.png\" alt=\"Вентиляционные системы\" /></div>"
     },
     vacuum: {
         title: "Встроенные пылесосы",
-        body: "<p>Чистота и тишина благодаря встроенным системам пылеудаления. Удобные розетки-всасыватели и мощные агрегаты.</p><ul><li>Центральные пылесосы</li><li>Розетки-всасыватели</li><li>Пылесборные станции</li><li>Аксессуары и насадки</li></ul><div class=\"modal-media\"><img src=\"uslugi/пылесос.jpg\" alt=\"Встроенные пылесосы\" /></div>"
+        body: "<p>Чистота и тишина благодаря встроенным системам пылеудаления. Удобные розетки-всасыватели и мощные агрегаты.</p><ul><li>Центральные пылесосы</li><li>Розетки-всасыватели</li><li>Пылесборные станции</li><li>Аксессуары и насадки</li></ul><div class=\"modal-media\"><img src=\"uslugi/встроен_пыл.png\" alt=\"Встроенные пылесосы\" /></div>"
     },
     automation: {
         title: "Автоматизация и диспетчеризация",
-        body: "<p>Интеллектуальное управление инженерией: контроллеры, датчики, удалённый доступ, сценарии.</p><ul><li>Контроллеры и датчики</li><li>Удалённый мониторинг</li><li>Сценарии управления</li><li>Интеграция с умным домом</li></ul><div class=\"modal-media\"><img src=\"uslugi/диспет.jpg\" alt=\"Автоматизация и диспетчеризация\" /></div>"
+        body: "<p>Интеллектуальное управление инженерией: контроллеры, датчики, удалённый доступ, сценарии.</p><ul><li>Контроллеры и датчики</li><li>Удалённый мониторинг</li><li>Сценарии управления</li><li>Интеграция с умным домом</li></ul><div class=\"modal-media\"><img src=\"uslugi/автомат_диспет.png\" alt=\"Автоматизация и диспетчеризация\" /></div>"
     },
     aereco: {
         title: "Вентиляция Aereco",
-        body: "<p>Энергоэффективные решения вентиляции от французского бренда Aereco. Естественная вентиляция с контролем влажности.</p><ul><li>Гигрорегулируемые клапаны</li><li>Приточные клапаны</li><li>Вытяжные решетки</li><li>Системы управления</li></ul><div class=\"modal-media\"><img src=\"uslugi/aereco.jpg\" alt=\"Вентиляция Aereco\" /></div>"
+        body: "<p>Энергоэффективные решения вентиляции от французского бренда Aereco. Естественная вентиляция с контролем влажности.</p><ul><li>Гигрорегулируемые клапаны</li><li>Приточные клапаны</li><li>Вытяжные решетки</li><li>Системы управления</li></ul><div class=\"modal-media\"><img src=\"uslugi/вент_Aereco.png\" alt=\"Вентиляция Aereco\" /></div>"
     }
 };
 
@@ -348,88 +348,57 @@ document.addEventListener("submit", function(e){
 document.addEventListener("DOMContentLoaded", function(){ try { ensureContactModal(); } catch(_){} });
 
 // Mobile menu functionality - FIXED VERSION
-document.addEventListener("DOMContentLoaded", function() {
-    console.log("DOM loaded, initializing mobile menu...");
-    
+(function(){
+  document.addEventListener("DOMContentLoaded", function() {
     const burger = document.querySelector(".burger");
     const mobileMenu = document.querySelector(".mobile-menu");
     const mobileMenuClose = document.querySelector(".mobile-menu-close");
-    
-    console.log("Elements found:", { 
-        burger: !!burger, 
-        mobileMenu: !!mobileMenu, 
-        mobileMenuClose: !!mobileMenuClose 
-    });
-    
+
     // Open mobile menu
     if (burger && mobileMenu) {
-        burger.addEventListener("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log("Burger clicked, opening menu...");
-            mobileMenu.classList.add("active");
-            document.body.style.overflow = "hidden";
-        });
-    } else {
-        console.error("Burger or mobile menu not found!");
+      burger.addEventListener("click", function(e) {
+        e.preventDefault();
+        mobileMenu.classList.add("active");
+        document.body.style.overflow = "hidden";
+      });
     }
-    
-    // Close mobile menu
+
+    // Close via close button
     if (mobileMenuClose && mobileMenu) {
-        mobileMenuClose.addEventListener("click", function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            console.log("Close button clicked, closing menu...");
-            mobileMenu.classList.remove("active");
-            document.body.style.overflow = "";
-        });
+      mobileMenuClose.addEventListener("click", function(e) {
+        e.preventDefault();
+        mobileMenu.classList.remove("active");
+        document.body.style.overflow = "";
+      });
     }
-    
-    // Close mobile menu when clicking outside
+
+    // Close by clicking backdrop area
     if (mobileMenu) {
-        mobileMenu.addEventListener("click", function(e) {
-            if (e.target === mobileMenu) {
-                console.log("Clicked outside, closing menu...");
-                mobileMenu.classList.remove("active");
-                document.body.style.overflow = "";
-            }
-        });
-    }
-    
-    // Close mobile menu when clicking on nav links
-    const mobileNavLinks = document.querySelectorAll(".mobile-nav-menu a");
-    mobileNavLinks.forEach(link => {
-        link.addEventListener("click", function() {
-            console.log("Nav link clicked, closing menu...");
-            mobileMenu.classList.remove("active");
-            document.body.style.overflow = "";
-        });
-    });
-    
-    // Handle mobile service buttons
-    const mobileServiceBtns = document.querySelectorAll(".mobile-service-btn");
-    mobileServiceBtns.forEach(btn => {
-        btn.addEventListener("click", function(e) {
-            e.preventDefault();
-            const service = btn.getAttribute("data-service");
-            console.log("Service button clicked:", service);
-            if (service && typeof openModalByKey === "function") {
-                openModalByKey(service);
-                mobileMenu.classList.remove("active");
-                document.body.style.overflow = "";
-            }
-        });
-    });
-    
-    // Close mobile menu on escape key
-    document.addEventListener("keydown", function(e) {
-        if (e.key === "Escape" && mobileMenu && mobileMenu.classList.contains("active")) {
-            console.log("Escape pressed, closing menu...");
-            mobileMenu.classList.remove("active");
-            document.body.style.overflow = "";
+      mobileMenu.addEventListener("click", function(e){
+        if (e.target === mobileMenu) {
+          mobileMenu.classList.remove("active");
+          document.body.style.overflow = "";
         }
+      });
+    }
+
+    // Close on navigation link click
+    document.querySelectorAll('.mobile-nav-menu a').forEach(a => {
+      a.addEventListener('click', () => {
+        if (mobileMenu) mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      });
     });
-});
+
+    // Esc key close
+    document.addEventListener('keydown', function(e){
+      if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')){
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+    });
+  });
+})();
 
 // Auto-highlight active page in navigation
 document.addEventListener("DOMContentLoaded", function() {
@@ -459,5 +428,49 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     });
 });
+
+// Анимация статистики в блоке О себе (появление + подсчёт чисел)
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    const stats = document.querySelectorAll('.about-stats .stat-number');
+    if (!stats.length) return;
+
+    const parseTarget = (el)=>{
+      const t = (el.textContent||'').trim();
+      const hasDigits = /\d/.test(t);
+      const num = hasDigits ? (parseInt(t.replace(/\D/g,''),10) || 0) : 0;
+      const hasPlus = /\+$/.test(t) || t.includes('+');
+      const suffix = hasPlus && hasDigits ? '+' : (hasPlus ? '+' : '');
+      return { target:num, suffix, hasDigits, raw:t };
+    };
+
+    const animateCount = (el, target, suffix)=>{
+      let start = 0; const dur = 1200; const startTime = performance.now();
+      function tick(now){
+        const p = Math.min(1, (now - startTime) / dur);
+        const val = Math.floor(start + (target - start) * p);
+        el.textContent = val + suffix;
+        if (p < 1) requestAnimationFrame(tick); else el.textContent = target + suffix;
+      }
+      requestAnimationFrame(tick);
+    };
+
+    const observer = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if (!entry.isIntersecting) return;
+        const el = entry.target; const {target, suffix, hasDigits, raw} = parseTarget(el);
+        if (!hasDigits) { // оставляем строковые значения как есть (например, "РФ+ЕС")
+          el.textContent = raw;
+          observer.unobserve(el);
+          return;
+        }
+        animateCount(el, target, suffix);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.4 });
+
+    stats.forEach(s=>observer.observe(s));
+  });
+})();
 
 //# sourceMappingURL=script.js.map

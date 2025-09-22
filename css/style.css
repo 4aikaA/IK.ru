@@ -45,13 +45,17 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 0;
+    padding: 12px 0; /* уменьшил высоту */
+    flex-wrap: nowrap; /* запрещаем перенос */
+    gap: 16px;
 }
 
 .logo {
     text-decoration: none;
     font-size: 24px;
     font-weight: 700;
+    white-space: nowrap;
+    flex: 0 0 auto;
 }
 
 .logo-text {
@@ -66,10 +70,11 @@ body {
 .hero {
     background: var(--dark-blue);
     color: var(--white);
-    padding: 120px 0 80px;
+    padding: 96px 0 72px; /* Герой: компенсация фикс-хедера */
     min-height: 100vh;
     display: flex;
     align-items: center;
+    position: relative; overflow: hidden;
 }
 
 .hero-layout {
@@ -786,6 +791,7 @@ body {
     background: #1C202B;
     padding: 70px 0 60px;
     margin-top: 72px; /* space under fixed header */
+    position: relative; overflow: hidden;
 }
 .about-hero__title {
     color: #fff;
@@ -956,6 +962,7 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 	background-image: none;
 	color: #fff;
 	padding: 70px 0 60px;
+	position: relative; overflow: hidden;
 }
 /* Make Examples and Cooperation hero compact like About: override global 100vh */
 .examples-page .hero,
@@ -1074,8 +1081,17 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 }
 
 /* Бургер (SVG) */
-.burger { display: none; width: 40px; height: 40px; border: 0; background: transparent; padding: 0; cursor: pointer; align-items: center; justify-content: center; }
-.burger svg { width: 26px; height: 26px; stroke: #1C202B; stroke-width: 2.2; fill: none; vector-effect: non-scaling-stroke; }
+.burger {
+    background: transparent;
+    border: 0;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+.burger svg { width: 26px; height: 26px; stroke: var(--dark-blue); fill: none; stroke-width: 2px; }
 .burger:focus-visible { outline: 2px solid rgba(28,32,43,.35); outline-offset: 2px; }
 
 @media (max-width: 768px) {
@@ -1548,3 +1564,73 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 .modal#service-modal .modal-body { overflow: auto; padding-top: 8px; }
 .modal#service-modal .modal-body .modal-media { margin-top: 12px; }
 .modal#service-modal .modal-body img { width: 100%; height: auto; display: block; border-radius: 8px; }
+
+/* Статистика: анимация как на бейдже */
+.about-stats .stat-item { position: relative; overflow: hidden; }
+.about-stats .stat-number {
+  position: relative;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 64px; height: 64px; border-radius: 999px;
+  background: radial-gradient(100% 100% at 50% 50%, rgba(239,111,56,.28) 0%, rgba(239,111,56,.12) 60%, transparent 100%);
+  color: #fff; border: 1px solid rgba(239,111,56,.35);
+  box-shadow: 0 0 0 0 rgba(239,111,56,.25);
+  animation: statPulse 2.2s ease-in-out infinite;
+}
+.about-stats .stat-label { display: block; margin-top: 6px; }
+.about-stats .stat-item::after {
+  content: ""; position: absolute; inset: 0; border-radius: 14px;
+  box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 0 0 rgba(239,111,56,.0);
+  animation: statGlow .9s ease forwards; opacity: .85;
+}
+@keyframes statPulse { 0%{ box-shadow: 0 0 0 0 rgba(239,111,56,.35);} 70%{ box-shadow: 0 0 0 10px rgba(239,111,56,0);} 100%{ box-shadow: 0 0 0 0 rgba(239,111,56,0);} }
+@keyframes statGlow { from { box-shadow: inset 0 0 0 1px rgba(255,255,255,.06), 0 0 0 0 rgba(239,111,56,.0);} to { box-shadow: inset 0 0 0 1px rgba(255,255,255,.12), 0 4px 22px rgba(239,111,56,.15);} }
+
+/* Десктоп: показываем паровозик, скрываем бургер */
+.header-services-icons.desktop-only { display: flex; }
+.burger { display: none; }
+
+@media (max-width: 1200px){
+  .header-services-icons.desktop-only { display: flex; }
+}
+
+/* Мобильные: прячем паровозик, показываем бургер */
+@media (max-width: 768px){
+  .header-services-icons.desktop-only { display: none !important; }
+  .burger { display: inline-flex; }
+  .nav-menu { display: none; }
+}
+
+/* Анимированные векторы на баннерах */
+.hero-vectors { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
+.hero .container, .about-hero .container, .examples-page .hero .container, .cooperation-page .hero .container { position: relative; z-index: 2; }
+.hero-vectors img, .hero-vectors svg { position: absolute; width: 22px; height: 22px; opacity: .3; filter: drop-shadow(0 1px 3px rgba(0,0,0,.3)); }
+/* базовые траектории */
+@keyframes drift1 { 0%{ transform: translate(0,0) rotate(0deg); } 50%{ transform: translate(14px, -6px) rotate(8deg);} 100%{ transform: translate(0,0) rotate(0deg);} }
+@keyframes drift2 { 0%{ transform: translate(0,0) rotate(0deg); } 50%{ transform: translate(-12px, 8px) rotate(-10deg);} 100%{ transform: translate(0,0) rotate(0deg);} }
+@keyframes drift3 { 0%{ transform: translate(0,0) rotate(0deg);} 50%{ transform: translate(8px, -8px) rotate(6deg);} 100%{ transform: translate(0,0) rotate(0deg);} }
+/* позиции по периметру */
+.hero-vectors .p1{ left:3%; top:8%; animation: drift1 30s linear infinite; }
+.hero-vectors .p2{ left:15%; top:6%; animation: drift2 36s linear infinite; }
+.hero-vectors .p3{ right:6%; top:10%; animation: drift3 28s linear infinite; }
+.hero-vectors .p4{ right:3%; top:25%; animation: drift1 34s linear infinite; }
+.hero-vectors .p5{ left:4%; bottom:12%; animation: drift2 32s linear infinite; }
+.hero-vectors .p6{ left:18%; bottom:7%; animation: drift3 30s linear infinite; }
+.hero-vectors .p7{ right:12%; bottom:9%; animation: drift1 33s linear infinite; }
+.hero-vectors .p8{ right:4%; bottom:15%; animation: drift2 35s linear infinite; }
+.hero-vectors .p9{ left:50%; top:4%; transform: translateX(-50%); animation: drift3 31s linear infinite; }
+/* добавочные точки */
+.hero-vectors .p10{ left:28%; top:5%; animation: drift2 38s linear infinite; }
+.hero-vectors .p11{ left:40%; top:7%; animation: drift1 33s linear infinite; }
+.hero-vectors .p12{ right:28%; top:6%; animation: drift3 37s linear infinite; }
+.hero-vectors .p13{ left:6%; top:35%; animation: drift1 29s linear infinite; }
+.hero-vectors .p14{ right:6%; top:42%; animation: drift2 34s linear infinite; }
+.hero-vectors .p15{ left:32%; bottom:6%; animation: drift3 32s linear infinite; }
+.hero-vectors .p16{ right:32%; bottom:8%; animation: drift1 36s linear infinite; }
+/* новые дополнительные точки */
+.hero-vectors .p17{ left:8%; top:18%; animation: drift2 39s linear infinite; }
+.hero-vectors .p18{ left:22%; top:3%; animation: drift3 35s linear infinite; }
+.hero-vectors .p19{ right:18%; top:12%; animation: drift1 37s linear infinite; }
+.hero-vectors .p20{ left:10%; bottom:18%; animation: drift3 34s linear infinite; }
+.hero-vectors .p21{ right:22%; bottom:6%; animation: drift2 33s linear infinite; }
+.hero-vectors .p22{ left:48%; bottom:4%; transform: translateX(-50%); animation: drift1 35s linear infinite; }
+@media (max-width: 768px){ .hero-vectors{ display:none; } }
