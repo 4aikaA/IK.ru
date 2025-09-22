@@ -1634,3 +1634,22 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 .hero-vectors .p21{ right:22%; bottom:6%; animation: drift2 33s linear infinite; }
 .hero-vectors .p22{ left:48%; bottom:4%; transform: translateX(-50%); animation: drift1 35s linear infinite; }
 @media (max-width: 768px){ .hero-vectors{ display:none; } }
+
+@media (max-width: 768px){
+  /* Хедер: бургер в одну строку с логотипом */
+  .header-content{ display:flex; align-items:center; justify-content:space-between; }
+  .logo{ font-size:22px; }
+  .burger{ display:inline-flex; order:2; margin-left:auto; }
+  .header-phone{ display:none; }
+  .nav-menu{ display:none; }
+
+  /* Блок О себе: плашки в 1 колонку, растяжка на всю ширину */
+  .about-preview__content{ grid-template-columns:1fr !important; gap:20px !important; }
+  .about-stats{ display:grid !important; grid-template-columns:1fr !important; gap:12px !important; }
+  .about-stats .stat-item{ width:100% !important; max-width:100% !important; margin:0 !important; }
+}
+/* Сверхузкие экраны */
+@media (max-width: 420px){
+  .logo{ font-size:20px; }
+  .about-preview p{ font-size:1em !important; }
+}

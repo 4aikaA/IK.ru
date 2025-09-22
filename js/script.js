@@ -400,6 +400,26 @@ document.addEventListener("DOMContentLoaded", function(){ try { ensureContactMod
   });
 })();
 
+(function ensureMobileMenuExists(){
+  document.addEventListener('DOMContentLoaded', function(){
+    if (document.querySelector('.mobile-menu')) return;
+    const wrap = document.createElement('div');
+    wrap.innerHTML = `
+      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+        <div class="mobile-menu__panel">
+          <button class="mobile-menu-close" aria-label="Закрыть меню">✕</button>
+          <nav class="mobile-nav-menu">
+            <a href="about.html">О себе</a>
+            <a href="index.html#services">Услуги</a>
+            <a href="examples.html">Примеры работ</a>
+            <a href="cooperation.html">Сотрудничество</a>
+          </nav>
+        </div>
+      </div>`;
+    document.body.appendChild(wrap.firstElementChild);
+  });
+})();
+
 // Auto-highlight active page in navigation
 document.addEventListener("DOMContentLoaded", function() {
     const currentPage = window.location.pathname.split("/").pop() || "index.html";
