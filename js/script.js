@@ -349,54 +349,21 @@ document.addEventListener("DOMContentLoaded", function(){ try { ensureContactMod
 
 // Mobile menu functionality - FIXED VERSION
 (function(){
-  document.addEventListener("DOMContentLoaded", function() {
-    const burger = document.querySelector(".burger");
-    const mobileMenu = document.querySelector(".mobile-menu");
-    const mobileMenuClose = document.querySelector(".mobile-menu-close");
-
-    // Open mobile menu
-    if (burger && mobileMenu) {
-      burger.addEventListener("click", function(e) {
-        e.preventDefault();
-        mobileMenu.classList.add("active");
-        document.body.style.overflow = "hidden";
-      });
+  document.addEventListener("click", function(e){
+    const burger = e.target.closest(".burger");
+    if (burger){
+      const mobileMenu = document.querySelector(".mobile-menu") || document.getElementById("mobile-menu");
+      if (mobileMenu){ mobileMenu.classList.add("active"); document.body.style.overflow = "hidden"; }
+      e.preventDefault();
+      return;
     }
-
-    // Close via close button
-    if (mobileMenuClose && mobileMenu) {
-      mobileMenuClose.addEventListener("click", function(e) {
-        e.preventDefault();
-        mobileMenu.classList.remove("active");
-        document.body.style.overflow = "";
-      });
+    const closeBtn = e.target.closest(".mobile-menu-close");
+    if (closeBtn){
+      const mobileMenu = document.querySelector(".mobile-menu.active");
+      if (mobileMenu){ mobileMenu.classList.remove("active"); document.body.style.overflow = ""; }
+      e.preventDefault();
+      return;
     }
-
-    // Close by clicking backdrop area
-    if (mobileMenu) {
-      mobileMenu.addEventListener("click", function(e){
-        if (e.target === mobileMenu) {
-          mobileMenu.classList.remove("active");
-          document.body.style.overflow = "";
-        }
-      });
-    }
-
-    // Close on navigation link click
-    document.querySelectorAll('.mobile-nav-menu a').forEach(a => {
-      a.addEventListener('click', () => {
-        if (mobileMenu) mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      });
-    });
-
-    // Esc key close
-    document.addEventListener('keydown', function(e){
-      if (e.key === 'Escape' && mobileMenu && mobileMenu.classList.contains('active')){
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
   });
 })();
 

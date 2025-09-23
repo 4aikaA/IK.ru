@@ -1640,7 +1640,7 @@ body:not(.index-page) .mobile-menu { display: none !important; }
   .header-content{ display:flex; align-items:center; justify-content:space-between; }
   .logo{ font-size:22px; }
   .burger{ display:inline-flex; order:2; margin-left:auto; }
-  .header-phone{ display:none; }
+  .header-phone{ display:flex; gap:10px; order:3; margin-left:12px; }
   .nav-menu{ display:none; }
 
   /* Блок О себе: плашки в 1 колонку, растяжка на всю ширину */
@@ -1648,8 +1648,52 @@ body:not(.index-page) .mobile-menu { display: none !important; }
   .about-stats{ display:grid !important; grid-template-columns:1fr !important; gap:12px !important; }
   .about-stats .stat-item{ width:100% !important; max-width:100% !important; margin:0 !important; }
 }
+/* Показываем векторы на мобильных, но ещё меньше и бледнее */
+@media (max-width: 768px){
+  .hero-vectors{ display:block; }
+  .hero-vectors img, .hero-vectors svg { width:14px; height:14px; opacity:.18; }
+}
 /* Сверхузкие экраны */
 @media (max-width: 420px){
   .logo{ font-size:20px; }
   .about-preview p{ font-size:1em !important; }
 }
+
+/* Отступ между баннером и заголовком на странице Сотрудничество */
+.cooperation-page .cooperation { padding-top: 60px; }
+@media (max-width: 768px){ .cooperation-page .cooperation { padding-top: 40px; } }
+
+/* Отступ между сеткой специализаций и блоком преимуществ */
+.cooperation-page .benefits { padding-top: 60px; }
+@media (max-width: 768px){ .cooperation-page .benefits { padding-top: 40px; } }
+
+/* Почему выбирают нас — единый стиль и hover-анимация */
+.benefit-badges .badge{
+  background:#0f172a !important;
+  color:#ffffff !important;
+  border:1px solid rgba(255,255,255,.08) !important;
+  border-radius:14px !important;
+  padding:18px 20px !important;
+  box-shadow:0 10px 24px rgba(0,0,0,.18) !important;
+  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border-color .25s ease;
+  position: relative;
+  overflow: hidden;
+}
+.benefit-badges .badge h4{ margin:0 0 6px 0; font-size:18px; transition:color .25s ease; }
+.benefit-badges .badge p{ margin:0; opacity:.9; color:rgba(255,255,255,.92) !important; }
+/* Блик при наведении */
+.benefit-badges .badge::before{
+  content:""; position:absolute; inset:0 auto 0 -130%; width:55%; height:100%;
+  background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.15) 45%, transparent 90%);
+  transform:skewX(-22deg);
+  transition:left .6s ease;
+  pointer-events:none;
+}
+/* Вариант 2: оранжевое подсвечивание и блик */
+.benefit-badges .badge:hover, .benefit-badges .badge:focus-within{
+  transform:translateY(-4px);
+  box-shadow:0 14px 30px rgba(0,0,0,.24), 0 0 0 1px rgba(239,111,56,.25) inset !important;
+  border-color: rgba(239,111,56,.35) !important;
+}
+.benefit-badges .badge:hover h4, .benefit-badges .badge:focus-within h4{ color:#EF6F38; }
+.benefit-badges .badge:hover::before, .benefit-badges .badge:focus-within::before{ left:135%; }
