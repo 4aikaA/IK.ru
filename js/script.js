@@ -349,43 +349,56 @@ document.addEventListener("DOMContentLoaded", function(){ try { ensureContactMod
 
 // Mobile menu functionality - FIXED VERSION
 (function(){
-  document.addEventListener("click", function(e){
-    const burger = e.target.closest(".burger");
-    if (burger){
-      const mobileMenu = document.querySelector(".mobile-menu") || document.getElementById("mobile-menu");
-      if (mobileMenu){ mobileMenu.classList.add("active"); document.body.style.overflow = "hidden"; }
-      e.preventDefault();
-      return;
-    }
-    const closeBtn = e.target.closest(".mobile-menu-close");
-    if (closeBtn){
-      const mobileMenu = document.querySelector(".mobile-menu.active");
-      if (mobileMenu){ mobileMenu.classList.remove("active"); document.body.style.overflow = ""; }
-      e.preventDefault();
-      return;
-    }
+  function getBurger(){ return document.querySelector('.burger'); }
+  function getMenu(){ return document.querySelector('.mobile-menu') || document.getElementById('mobile-menu'); }
+  function openMenu(){
+    const menu = getMenu();
+    if (!menu) return;
+    menu.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    const b = getBurger(); if (b) b.setAttribute('aria-expanded','true');
+  }
+  function closeMenu(){
+    const menu = getMenu();
+    if (!menu) return;
+    menu.classList.remove('active');
+    document.body.style.overflow = '';
+    const b = getBurger(); if (b) b.setAttribute('aria-expanded','false');
+  }
+  document.addEventListener('click', function(e){
+    const burger = e.target.closest('.burger');
+    if (burger){ e.preventDefault(); if (!getMenu()) try{ ensureMobileMenuExistsImmediate(); }catch(_){} openMenu(); return; }
+    const closeBtn = e.target.closest('.mobile-menu-close');
+    if (closeBtn){ e.preventDefault(); closeMenu(); return; }
+    const backdrop = e.target.closest('.mobile-menu');
+    if (backdrop && !e.target.closest('.mobile-menu__panel')){ e.preventDefault(); closeMenu(); return; }
   });
 })();
 
 (function ensureMobileMenuExists(){
   document.addEventListener('DOMContentLoaded', function(){
     if (document.querySelector('.mobile-menu')) return;
-    const wrap = document.createElement('div');
-    wrap.innerHTML = `
-      <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-        <div class="mobile-menu__panel">
-          <button class="mobile-menu-close" aria-label="Закрыть меню">✕</button>
-          <nav class="mobile-nav-menu">
-            <a href="about.html">О себе</a>
-            <a href="index.html#services">Услуги</a>
-            <a href="examples.html">Примеры работ</a>
-            <a href="cooperation.html">Сотрудничество</a>
-          </nav>
-        </div>
-      </div>`;
-    document.body.appendChild(wrap.firstElementChild);
+    ensureMobileMenuExistsImmediate();
   });
 })();
+
+function ensureMobileMenuExistsImmediate(){
+  if (document.querySelector('.mobile-menu')) return;
+  const wrap = document.createElement('div');
+  wrap.innerHTML = `
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <div class="mobile-menu__panel">
+        <button class="mobile-menu-close" aria-label="Закрыть меню">✕</button>
+        <nav class="mobile-nav-menu">
+          <a href="about.html">О себе</a>
+          <a href="index.html#services">Услуги</a>
+          <a href="examples.html">Примеры работ</a>
+          <a href="cooperation.html">Сотрудничество</a>
+        </nav>
+      </div>
+    </div>`;
+  document.body.appendChild(wrap.firstElementChild);
+}
 
 // Auto-highlight active page in navigation
 document.addEventListener("DOMContentLoaded", function() {
@@ -457,6 +470,30 @@ document.addEventListener("DOMContentLoaded", function() {
     }, { threshold: 0.4 });
 
     stats.forEach(s=>observer.observe(s));
+  });
+})();
+
+// Автоподмена изображений «Примеры» на WebP при поддержке браузером
+(function(){
+  document.addEventListener('DOMContentLoaded', function(){
+    try{
+      var can = document.createElement('canvas');
+      var supportsWebP = false;
+      try { supportsWebP = can.toDataURL('image/webp').indexOf('data:image/webp') === 0; } catch(_) {}
+      if (!supportsWebP) return;
+      var imgs = document.querySelectorAll('.examples img.example-image, .examples-grid img');
+      imgs.forEach(function(img){
+        var src = img.getAttribute('src') || '';
+        if (!/\.(png|jpe?g)$/i.test(src)) return;
+        var webp = src.replace(/\.(png|jpe?g)$/i, '.webp');
+        var test = new Image();
+        test.onload = function(){ if (test.width>0) { img.src = webp; } };
+        test.onerror = function(){};
+        test.decoding = 'async';
+        test.loading = 'lazy';
+        test.src = webp;
+      });
+    }catch(e){}
   });
 })();
 

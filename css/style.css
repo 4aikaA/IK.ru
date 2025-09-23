@@ -1637,10 +1637,12 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 
 @media (max-width: 768px){
   /* Хедер: бургер в одну строку с логотипом */
-  .header-content{ display:flex; align-items:center; justify-content:space-between; }
-  .logo{ font-size:22px; }
-  .burger{ display:inline-flex; order:2; margin-left:auto; }
-  .header-phone{ display:flex; gap:10px; order:3; margin-left:12px; }
+  .header-content{ display:flex; flex-wrap:wrap; align-items:center; }
+  /* первая строка */
+  .logo{ order:1; font-size:22px; }
+  .burger{ order:2; margin-left:auto; display:inline-flex; }
+  /* вторая строка: мессенджеры */
+  .header-phone{ order:3; width:100%; display:flex; justify-content:center; gap:12px; margin-top:6px; }
   .nav-menu{ display:none; }
 
   /* Блок О себе: плашки в 1 колонку, растяжка на всю ширину */
@@ -1697,3 +1699,40 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 }
 .benefit-badges .badge:hover h4, .benefit-badges .badge:focus-within h4{ color:#EF6F38; }
 .benefit-badges .badge:hover::before, .benefit-badges .badge:focus-within::before{ left:135%; }
+
+/* Глобальные стили мобильного меню (для всех страниц) */
+.mobile-menu{ position:fixed; inset:0; width:100%; height:100%; background:rgba(0,0,0,.5); z-index:1000; opacity:0; visibility:hidden; transition:opacity .28s ease, visibility .28s ease; }
+.mobile-menu.active{ opacity:1; visibility:visible; }
+.mobile-menu__panel{ position:absolute; top:0; right:0; width:280px; max-width:86%; height:100%; background:#ffffff; padding:20px; transform:translateX(100%); transition:transform .28s ease; box-shadow:-12px 0 30px rgba(0,0,0,.18); }
+.mobile-menu.active .mobile-menu__panel{ transform:translateX(0); }
+.mobile-menu-close{ background:none; border:0; font-size:24px; line-height:1; cursor:pointer; margin-bottom:16px; color:#1C202B; }
+.mobile-nav-menu{ display:flex; flex-direction:column; gap:12px; }
+.mobile-nav-menu a{ color:#1C202B; text-decoration:none; font-size:18px; padding:10px 0; border-bottom:1px solid #eee; }
+
+/* Улучшенная CTA-кнопка: «Обсудить задачу» */
+.fab-contact{
+  background: linear-gradient(135deg, var(--orange) 0%, #e65d28 100%);
+  color:#fff;
+  font-weight:700;
+  border-radius:9999px; /* пилюля */
+  height:48px;
+  min-width:48px;
+  padding:0 16px;
+  width:auto; /* вместо фиксированного круга */
+  box-shadow:0 14px 28px rgba(239,111,56,.30), 0 0 0 1px rgba(255,255,255,.08) inset;
+}
+.fab-contact:hover{ box-shadow:0 18px 36px rgba(239,111,56,.38), 0 0 0 1px rgba(255,255,255,.10) inset; }
+.fab-contact:active{ transform: translateY(0) scale(.99); }
+
+/* Чуть больше на очень узких экранах */
+@media (max-width: 480px){
+  .fab-contact{ height:52px; padding:0 18px; font-size:15px; }
+}
+
+/* Анимация внимания для CTA */
+@keyframes ctaPulse{ 0%,100%{ transform: translateY(0) scale(1); box-shadow:0 14px 28px rgba(239,111,56,.30), 0 0 0 1px rgba(255,255,255,.08) inset; } 50%{ transform: translateY(-1px) scale(1.035); box-shadow:0 20px 36px rgba(239,111,56,.40), 0 0 0 1px rgba(255,255,255,.10) inset; } }
+@keyframes ctaWave{ 0%{ opacity:.35; transform: scale(1); } 70%{ opacity:0; transform: scale(1.6); } 100%{ opacity:0; transform: scale(1.6); } }
+.fab-contact{ animation: ctaPulse 2.8s ease-in-out infinite; position:relative; }
+.fab-contact::before{ content:""; position:absolute; inset:0; border-radius:9999px; background: radial-gradient(circle, rgba(239,111,56,.35) 0%, rgba(239,111,56,0) 60%); filter: blur(6px); z-index:-1; animation: ctaWave 2.8s ease-out infinite; }
+/* При наведении анимация не мешает взаимодействию */
+.fab-contact:hover{ animation-play-state: paused; }
