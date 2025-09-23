@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://4aikaa.github.io/IK%20ru/sitemap.xml 
