@@ -191,7 +191,7 @@
                 <div class="hero-layout">
                     <div class="hero-side hero-side--left">
                         <div class="hero-card">
-                            <img src="self/main_без_фона.png" alt="Главное фото" loading="lazy" decoding="async">
+                            <img src="self/main_без_фона.png" alt="Главное фото" decoding="async" fetchpriority="high">
                         </div>
                     </div>
                     <div class="hero-center">
@@ -353,7 +353,10 @@
                 </div>
                 <div class="examples-grid" style="display: flex; gap: 20px; overflow-x: auto; scrollbar-width: none; -ms-overflow-style: none; padding: 20px 0;">
                     <div class="example-card" style="flex: 0 0 280px; min-width: 280px;">
-                        <img src="examples/all_pool.png" alt="Бассейн" loading="lazy" decoding="async">
+                        <picture>
+                            <source srcset="examples/all_pool.webp" type="image/webp">
+                            <img src="examples/all_pool.png" alt="Бассейн" loading="lazy" decoding="async">
+                        </picture>
                         <h3>Бассейн</h3>
                         <p>Система вентиляции и кондиционирования</p>
                     </div>
@@ -480,9 +483,7 @@
         <button class="fab fab-up" id="fab-up" title="Наверх" aria-label="Наверх">
             <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M12 5l7 7M12 5l-7 7" stroke="currentColor" stroke-width="2" fill="none"/></svg>
         </button>
-        <button class="fab fab-contact" id="fab-contact" title="Связаться" aria-label="Связаться">
-            <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 4h16v12H5l-1 4z" stroke="currentColor" stroke-width="2" fill="none"/></svg>
-        </button>
+        <button class="fab fab-contact" id="fab-contact" title="Обсудить задачу" aria-label="Обсудить задачу">Обсудить задачу</button>
     </div>
 
     <script src="js/script.js?v=151" defer></script>
