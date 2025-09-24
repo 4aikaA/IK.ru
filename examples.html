@@ -36,6 +36,8 @@
         .header-services-icons{ display:none !important; }
       }
       @media (min-width: 769px){ .burger{ display:none; } }
+      /* ensure burger visible on examples */
+      .burger{ display:inline-flex; }
       .mobile-menu{ position:fixed; inset:0; background:rgba(0,0,0,.5); display:none; opacity:0; transition:opacity .25s ease; z-index:3000; }
       .mobile-menu.active{ display:block; opacity:1; }
       .mobile-menu__panel{ position:absolute; right:0; top:0; width:280px; height:100%; background:#fff; transform:translateX(100%); transition:transform .25s ease; padding:20px; }
