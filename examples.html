@@ -44,7 +44,10 @@
       .mobile-nav-menu a{ display:block; padding:14px 0; color:#1C202B; text-decoration:none; border-bottom:1px solid #f1f5f9; }
     </style>
     <style>
-      @media (max-width: 768px){ body:not(.index-page) .burger{ display:inline-flex !important; } body:not(.index-page) .nav-menu{ display:none !important; } }
+      @media (max-width:768px){
+        body:not(.index-page) .mobile-menu{ display:block !important; opacity:0; pointer-events:none; }
+        body:not(.index-page) .mobile-menu.active{ opacity:1; pointer-events:auto; }
+      }
     </style>
     <style>
       @media (max-width:768px){

@@ -62,6 +62,13 @@
       }
       .burger img{width:22px;height:22px;display:block}
     </style>
+    <style>
+      /* Разрешаем мобильное меню на внутренних страницах */
+      @media (max-width:768px){
+        body:not(.index-page) .mobile-menu{ display:block !important; opacity:0; pointer-events:none; }
+        body:not(.index-page) .mobile-menu.active{ opacity:1; pointer-events:auto; }
+      }
+    </style>
 </head>
 <body class="about-page">
     <header class="header">
