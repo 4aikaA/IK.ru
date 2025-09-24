@@ -1806,3 +1806,25 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 .t-meta{ color:#64748b; font-size:14px; }
 .t-text{ color:#334155; line-height:1.6; margin:10px 0 8px; }
 .t-rating{ color:#EF6F38; }
+
+/* === Mobile header burger (final) === */
+@media (max-width: 768px){
+  .header-services-icons{ display:none !important; }
+  .nav-menu{ display:none !important; }
+  .burger{ display:inline-flex !important; align-items:center; justify-content:center; width:42px; height:42px; border-radius:10px; border:1px solid rgba(28,32,43,.12); background:#fff; }
+  .burger span{ display:block; width:20px; height:2px; background:#1C202B; border-radius:2px; }
+  .burger span + span{ margin-top:5px; }
+}
+@media (min-width: 769px){ .burger{ display:none; } }
+
+/* === Testimonials cards (final) === */
+.testimonials-grid{ display:flex; gap:16px; overflow-x:auto; padding:10px 0; }
+.testimonials-grid::-webkit-scrollbar{ height:6px; }
+.testimonials-grid::-webkit-scrollbar-thumb{ background:#cbd5e1; border-radius:3px; }
+.testimonial{ background:#fff; border-radius:12px; padding:16px; box-shadow:0 4px 12px rgba(0,0,0,.08); flex:0 0 280px; max-width:320px; }
+.testimonial-head{ display:flex; align-items:center; gap:12px; margin-bottom:10px; }
+.testimonial-avatar{ width:40px; height:40px; border-radius:50%; background:#e2e8f0; color:#1C202B; display:inline-flex; align-items:center; justify-content:center; font-weight:700; }
+.t-name{ font-weight:700; color:#1C202B; }
+.t-meta{ color:#64748b; font-size:14px; }
+.t-text{ color:#334155; line-height:1.6; margin:10px 0 8px; }
+.t-rating{ color:#EF6F38; }
