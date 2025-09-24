@@ -44,7 +44,14 @@
       .mobile-nav-menu a{ display:block; padding:14px 0; color:#1C202B; text-decoration:none; border-bottom:1px solid #f1f5f9; }
     </style>
     <style>
-      @media (max-width: 768px){ body:not(.index-page) .burger{ display:inline-flex !important; } body:not(.index-page) .nav-menu{ display:none !important; } }
+      @media (max-width:768px){
+        .header-content{display:flex;align-items:center;justify-content:space-between;gap:12px}
+        .logo{display:inline-flex;align-items:center;height:42px;padding:6px 10px;line-height:1}
+        .burger{display:inline-flex!important;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(28,32,43,.12);border-radius:10px;background:#fff}
+        .nav-menu,.header-services-icons{display:none!important}
+      }
+      body:not(.index-page) .mobile-menu{display:block!important;opacity:0;pointer-events:none}
+      body:not(.index-page) .mobile-menu.active{opacity:1;pointer-events:auto}
     </style>
 </head>
 <body class="cooperation-page">
