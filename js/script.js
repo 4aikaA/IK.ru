@@ -372,12 +372,9 @@ document.addEventListener("DOMContentLoaded", function(){ try { ensureContactMod
     if (closeBtn){ e.preventDefault(); closeMenu(); return; }
     const backdrop = e.target.closest('.mobile-menu');
     if (backdrop && !e.target.closest('.mobile-menu__panel')){ e.preventDefault(); closeMenu(); return; }
-    // Закрываем меню при переходе в Контакты из мобильного меню
-    const contactLink = e.target.closest('.mobile-nav-menu a');
-    if (contactLink){
-      const href = (contactLink.getAttribute('href')||'').trim();
-      if (href === '#contact' || href.endsWith('#contact')){ closeMenu(); }
-    }
+    // Закрываем меню при переходе по любому пункту мобильной навигации
+    const navLink = e.target.closest('.mobile-nav-menu a');
+    if (navLink){ closeMenu(); }
   });
 })();
 
