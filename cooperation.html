@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Сотрудничество — проектирование, монтаж и сервис ОВиК в РФ</title>
+    <meta name="keywords" content="сотрудничество ОВиК, проектирование, монтаж, автоматизация, диспетчеризация, сервис, инженерные системы РФ">
     <meta name="description" content="Партнёрство для проектировщиков, инженеров и монтажников. Проектирование, монтаж, автоматизация и сервис систем вентиляции, кондиционирования и отопления в РФ.">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="canonical" href="https://4aikaa.github.io/IK%20ru/cooperation.html">
@@ -44,14 +45,13 @@
       .mobile-nav-menu a{ display:block; padding:14px 0; color:#1C202B; text-decoration:none; border-bottom:1px solid #f1f5f9; }
     </style>
     <style>
+      /* Force burger visible on mobile (cooperation) */
       @media (max-width:768px){
-        .header-content{display:flex;align-items:center;justify-content:space-between;gap:12px}
-        .logo{display:inline-flex;align-items:center;height:42px;padding:6px 10px;line-height:1}
-        .burger{display:inline-flex!important;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid rgba(28,32,43,.12);border-radius:10px;background:#fff}
-        .nav-menu,.header-services-icons{display:none!important}
+        .burger{ display:inline-flex !important; }
+        .nav-menu, .header-services-icons{ display:none !important; }
       }
-      body:not(.index-page) .mobile-menu{display:block!important;opacity:0;pointer-events:none}
-      body:not(.index-page) .mobile-menu.active{opacity:1;pointer-events:auto}
+      body:not(.index-page) .mobile-menu{ display:block !important; opacity:0; pointer-events:none; }
+      body:not(.index-page) .mobile-menu.active{ opacity:1; pointer-events:auto; }
     </style>
 </head>
 <body class="cooperation-page">
@@ -65,25 +65,25 @@
                 <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#1C202B" stroke-width="2" stroke-linecap="round"/></svg></button>
                 <div class="header-services-icons desktop-only" aria-label="Быстрый доступ к услугам">
                     <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
-                        <img src="vektor/инженер.png" alt="Проектирование" width="24" height="24">
+                        <img src="vektor/инженер.png" alt="Проектирование" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="ac" title="Кондиционирование">
-                        <img src="vektor/конд.png" alt="Кондиционирование" width="24" height="24">
+                        <img src="vektor/конд.png" alt="Кондиционирование" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="heating" title="Отопление">
-                        <img src="vektor/отоплен.png" alt="Отопление" width="24" height="24">
+                        <img src="vektor/отоплен.png" alt="Отопление" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="ventilation" title="Вентиляционные системы">
-                        <img src="vektor/вент.png" alt="Вентиляционные системы" width="24" height="24">
+                        <img src="vektor/вент.png" alt="Вентиляционные системы" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="vacuum" title="Встроенные пылесосы">
-                        <img src="vektor/пылесос.png" alt="Встроенные пылесосы" width="24" height="24">
+                        <img src="vektor/пылесос.png" alt="Встроенные пылесосы" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="automation" title="Автоматизация и диспетчеризация">
-                        <img src="vektor/автоматиз.png" alt="Автоматизация и диспетчеризация" width="24" height="24">
+                        <img src="vektor/автоматиз.png" alt="Автоматизация и диспетчеризация" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                     <button class="header-icon" data-open-modal data-service="aereco" title="Вентиляция Aereco">
-                        <img src="vektor/aereco.png" alt="Вентиляция Aereco" width="24" height="24">
+                        <img src="vektor/aereco.png" alt="Вентиляция Aereco" width="24" height="24" loading="lazy" decoding="async">
                     </button>
                 </div>
                 <nav class="header-nav nav-menu">
@@ -94,10 +94,10 @@
                 </nav>
                 <div class="header-phone desktop-only" aria-label="Мессенджеры (desktop)">
                     <a class="header-messenger" href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp">
-                        <img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22">
+                        <img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22" loading="lazy" decoding="async">
                     </a>
                     <a class="header-messenger" href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram">
-                        <img src="vektor/telegram.svg" alt="Telegram" width="22" height="22">
+                        <img src="vektor/telegram.svg" alt="Telegram" width="22" height="22" loading="lazy" decoding="async">
                     </a>
                 </div>
 
@@ -309,14 +309,14 @@
                     <p>Свяжитесь со мной:</p>
                     <div class="contact-links">
                         <a href="tel:+79216433297">+7 921 643-32-97</a>
-                        <a href="mailto:igor.kузnetsov@gmail.com">igor.kузnetsov@gmail.com</a>
+                                                 <a href="mailto:igor.kuznetsov@gmail.com">igor.kuznetsov@gmail.com</a>
                     </div>
                     <p style="margin-top:10px;">188660, Ленинградская обл., дер. Порошкино, ул.Березовая, уч.8</p>
                     <div class="icon-links" style="margin-top:6px;">
-                        <a href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22"></a>
-                        <a href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram"><img src="vektor/telegram.svg" alt="Telegram" width="22" height="22"></a>
-                        <a href="https://yandex.ru/maps/?text=188660,%20Порошкино,%20Березовая%20уч.8" target="_blank" rel="noopener" aria-label="Яндекс Карты"><img src="vektor/Yandex.png" alt="Яндекс Карты" width="22" height="22"></a>
-                        <a href="https://2gis.ru/search/188660%20Порошкино%20Березовая%20уч%208" target="_blank" rel="noopener" aria-label="2ГИС"><img src="vektor/2GIS.png" alt="2ГИС" width="22" height="22"></a>
+                        <a href="https://wa.me/79216433297" target="_blank" rel="noopener" aria-label="WhatsApp"><img src="vektor/whatsapp.svg" alt="WhatsApp" width="22" height="22" loading="lazy" decoding="async"></a>
+                        <a href="https://t.me/igor_kuznetsov1" target="_blank" rel="noopener" aria-label="Telegram"><img src="vektor/telegram.svg" alt="Telegram" width="22" height="22" loading="lazy" decoding="async"></a>
+                        <a href="https://yandex.ru/maps/?text=188660,%20Порошкино,%20Березовая%20уч.8" target="_blank" rel="noopener" aria-label="Яндекс Карты"><img src="vektor/Yandex.png" alt="Яндекс Карты" width="22" height="22" loading="lazy" decoding="async"></a>
+                        <a href="https://2gis.ru/search/188660%20Порошкино%20Березовая%20уч%208" target="_blank" rel="noopener" aria-label="2ГИС"><img src="vektor/2GIS.png" alt="2ГИС" width="22" height="22" loading="lazy" decoding="async"></a>
                     </div>
                 </div>
             </div>
