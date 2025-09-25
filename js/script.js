@@ -500,4 +500,46 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 })();
 
+// Copy email buttons
+(function(){
+  document.addEventListener('click', function(e){
+    const btn = e.target.closest('.copy-email');
+    if (!btn) return;
+    const email = btn.getAttribute('data-email') || 'igor.kuznetsov@gmail.com';
+    if (navigator.clipboard && navigator.clipboard.writeText){
+      navigator.clipboard.writeText(email).then(function(){
+        try { btn.textContent = 'Скопировано'; setTimeout(()=>{ btn.textContent = 'Скопировать'; }, 1500); } catch(_){}
+      }).catch(function(){ alert('Скопируйте: '+email); });
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = email; document.body.appendChild(ta); ta.select();
+      try { document.execCommand('copy'); try { btn.textContent='Скопировано'; setTimeout(()=>{ btn.textContent='Скопировать'; }, 1500);}catch(_){} }
+      catch(_) { alert('Скопируйте: '+email); }
+      document.body.removeChild(ta);
+    }
+  });
+})();
+
+// Copy email automatically on clicking mailto links
+(function(){
+  document.addEventListener('click', function(e){
+    const link = e.target.closest('a[href^="mailto:"]');
+    if (!link) return;
+    const href = link.getAttribute('href') || '';
+    const match = href.match(/^mailto:([^?]+)/i);
+    const email = match ? decodeURIComponent(match[1]) : 'igor.kuznetsov@gmail.com';
+    try{
+      if (navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(email);
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = email; document.body.appendChild(ta); ta.select();
+        try { document.execCommand('copy'); } catch(_){}
+        document.body.removeChild(ta);
+      }
+    }catch(_){}
+    // не предотвращаем переход: почтовый клиент откроется штатно
+  }, true);
+})();
+
 //# sourceMappingURL=script.js.map
