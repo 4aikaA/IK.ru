@@ -1806,3 +1806,11 @@ body:not(.index-page) .mobile-menu { display: none !important; }
 .t-meta{ color:#64748b; font-size:14px; }
 .t-text{ color:#334155; line-height:1.6; margin:10px 0 8px; }
 .t-rating{ color:#EF6F38; }
+
+/* Mobile header vertical alignment fix */
+@media (max-width: 768px){
+  .header .header-content{ align-items: center !important; }
+  .header .logo{ display: inline-flex; align-items: center; height: 42px; padding-top: 6px; padding-bottom: 6px; line-height: 1; }
+  .header .logo span{ display: inline-block; line-height: 1; }
+  .header .burger{ display: inline-flex; align-items: center; height: 42px; }
+}
