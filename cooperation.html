@@ -45,13 +45,15 @@
       .mobile-nav-menu a{ display:block; padding:14px 0; color:#1C202B; text-decoration:none; border-bottom:1px solid #f1f5f9; }
     </style>
     <style>
-      /* Force burger visible on mobile (cooperation) */
-      @media (max-width:768px){
-        .burger{ display:inline-flex !important; }
-        .nav-menu, .header-services-icons{ display:none !important; }
+      /* Force burger visibility and mobile menu like about.html */
+      @media (max-width: 768px){
+        body:not(.index-page) .burger{ display:inline-flex !important; }
+        body:not(.index-page) .nav-menu{ display:none !important; }
       }
-      body:not(.index-page) .mobile-menu{ display:block !important; opacity:0; pointer-events:none; }
-      body:not(.index-page) .mobile-menu.active{ opacity:1; pointer-events:auto; }
+      @media (max-width:768px){
+        body:not(.index-page) .mobile-menu{ display:block !important; opacity:0; pointer-events:none; }
+        body:not(.index-page) .mobile-menu.active{ opacity:1; pointer-events:auto; }
+      }
     </style>
 </head>
 <body class="cooperation-page">

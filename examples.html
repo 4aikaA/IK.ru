@@ -81,6 +81,17 @@
       }
       .burger img{width:22px;height:22px;display:block}
     </style>
+    <style>
+      /* Force burger visibility and mobile menu like about.html */
+      @media (max-width: 768px){
+        body:not(.index-page) .burger{ display:inline-flex !important; }
+        body:not(.index-page) .nav-menu{ display:none !important; }
+      }
+      @media (max-width:768px){
+        body:not(.index-page) .mobile-menu{ display:block !important; opacity:0; pointer-events:none; }
+        body:not(.index-page) .mobile-menu.active{ opacity:1; pointer-events:auto; }
+      }
+    </style>
 </head>
 <body class="examples-page">
     <header class="header">
