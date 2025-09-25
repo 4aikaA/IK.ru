@@ -542,4 +542,26 @@ document.addEventListener("DOMContentLoaded", function() {
   }, true);
 })();
 
+// Force navigation for Contacts from mobile menu (robust across pages)
+(function(){
+  document.addEventListener('click', function(e){
+    const a = e.target.closest('.mobile-nav-menu a');
+    if (!a) return;
+    const href = a.getAttribute('href') || '';
+    if (/(#contact)$/.test(href)){
+      e.preventDefault();
+      // close mobile menu explicitly
+      const menu = document.querySelector('.mobile-menu');
+      if (menu){ menu.classList.remove('active'); document.body.style.overflow=''; }
+      // navigate
+      if (!/^https?:/i.test(href) && !href.startsWith('/')){
+        // relative link, safe to set location
+        window.location.href = href;
+      } else {
+        window.location.assign(href);
+      }
+    }
+  });
+})();
+
 //# sourceMappingURL=script.js.map
