@@ -357,7 +357,7 @@ document.addEventListener("DOMContentLoaded", function(){ try { ensureContactMod
     menu.classList.add('active');
     document.body.style.overflow = 'hidden';
     const b = getBurger(); if (b) b.setAttribute('aria-expanded','true');
-  }
+    }
   function closeMenu(){
     const menu = getMenu();
     if (!menu) return;

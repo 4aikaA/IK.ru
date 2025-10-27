@@ -22,7 +22,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="preload" href="css/style.css?v=151" as="style">
-    <link rel="preload" as="image" href="self/main_без_фона.png">
+    <link rel="preload" as="image" href="self/main_с_фоном.png">
     <link rel="stylesheet" href="css/style.css?v=151">
     <style>
         @media (max-width: 768px) {
@@ -81,7 +81,7 @@
         .header-content{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:nowrap; }
         .logo{ display:inline-flex; align-items:center; justify-content:center; height:42px; padding:6px 10px; line-height:1; }
         .burger{ display:inline-flex !important; align-items:center; justify-content:center; width:42px; height:42px; border-radius:10px; border:1px solid rgba(28,32,43,.12); background:#fff; }
-        .burger span{ display:block; width:20px; height:2px; background:#1C202B; border-radius:2px; }
+        .burger span{ display:block; width:20px; height:2px; background:#008080; border-radius:2px; }
         .burger span + span{ margin-top:5px; }
         .nav-menu{ display:none !important; }
         .header-services-icons{ display:none !important; }
@@ -98,7 +98,7 @@
       /* Pretty burger look */
       .burger{ line-height:0; background:#ffffff; border:1px solid #e2e8f0; border-radius:10px; box-shadow:0 2px 8px rgba(0,0,0,.06); transition: box-shadow .2s ease, transform .2s ease, background .2s ease; }
       .burger:hover{ background:#f8fafc; box-shadow:0 6px 14px rgba(0,0,0,.10); transform: translateY(-1px); }
-      .burger span{ width:22px; height:2px; background:#1C202B; display:block; border-radius:2px; will-change:transform; transform: translateZ(0); }
+      .burger span{ width:22px; height:2px; background:#008080; display:block; border-radius:2px; will-change:transform; transform: translateZ(0); }
       .burger span + span{ margin-top:6px; }
     </style>
     <script type="application/ld+json">{
@@ -130,7 +130,7 @@
                     <span class="logo-text">Игорь</span>
                     <span class="logo-surname">Кузнецов</span>
                 </a>
-                <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#1C202B" stroke-width="2" stroke-linecap="round"/></svg></button>
+                <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#008080" stroke-width="2" stroke-linecap="round"/></svg></button>
                 <div class="header-services-icons desktop-only" aria-label="Быстрый доступ к услугам">
                     <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
                         <img src="vektor/инженер.png" alt="Проектирование" width="24" height="24" loading="lazy" decoding="async">
@@ -192,7 +192,7 @@
                 <div class="hero-layout">
                     <div class="hero-side hero-side--left">
                         <div class="hero-card">
-                            <img src="self/main_без_фона.png" alt="Главное фото" decoding="async" fetchpriority="high">
+                            <img src="self/main_с_фоном.png" alt="Главное фото" decoding="async" fetchpriority="high" style="width:100%; height:auto; max-width: 720px;">
                         </div>
                     </div>
                     <div class="hero-center">
@@ -210,12 +210,8 @@
                         </div>
                     </div>
                     <div class="hero-side hero-side--right">
-                        <div class="hero-card hero-card--placeholder filled hero-card--medium" aria-label="Вторая картинка">
-                            <img src="self/foto_main_2.avif" alt="Инженерная команда за работой" loading="lazy" decoding="async">
-                        </div>
-                        <div class="hero-card hero-card--small" aria-label="Дополнительное фото">
-                            <img src="self/foto_main_3.avif" alt="Дополнительное фото" loading="lazy" decoding="async">
-                        </div>
+                        
+                        
                     </div>
                 </div>
                 <div class="hero-vectors" aria-hidden="true">
@@ -322,18 +318,18 @@
                         <img src="self/main_без_фона.png" alt="Игорь Кузнецов" loading="lazy" decoding="async" style="max-width: 400px; height: auto; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.15);">
                     </div>
                     <div class="about-preview__text" style="grid-area: text;">
-                        <h2 class="section-title" style="font-size: 2.5em; font-weight: 700; color: #1C202B; margin-bottom: 30px;">О <span class="highlight" style="color: #EF6F38;">себе</span></h2>
+                        <h2 class="section-title" style="font-size: 2.5em; font-weight: 700; color: #008080; margin-bottom: 30px;">О <span class="highlight" style="color: #EF6F38;">себе</span></h2>
                         <p style="font-size: 1.2em; line-height: 1.7; color: #334155; margin-bottom: 30px; padding: 25px; background: white; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-left: 4px solid #EF6F38;">С 2008 года я специализируюсь на проектировании и монтаже систем вентиляции, кондиционирования и отопления. За это время мы с командой реализовали более 300 объектов в жилом и коммерческом сегментах.</p>
                         <div class="about-stats" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 30px 0;">
-                            <div class="stat-item" style="text-align: center; padding: 20px; background: #1C202B; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);">
+                            <div class="stat-item" style="text-align: center; padding: 20px; background: #008080; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);">
                                 <div class="stat-number" style="font-size: 2.5em; font-weight: 700; color: #ffffff; margin-bottom: 10px;">15+</div>
                                 <div class="stat-label" style="font-size: 1.1em; color: #ffffff; font-weight: 600;">лет опыта</div>
                             </div>
-                            <div class="stat-item" style="text-align: center; padding: 20px; background: #1C202B; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);">
+                            <div class="stat-item" style="text-align: center; padding: 20px; background: #008080; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);">
                                 <div class="stat-number" style="font-size: 2.5em; font-weight: 700; color: #ffffff; margin-bottom: 10px;">300+</div>
                                 <div class="stat-label" style="font-size: 1.1em; color: #ffffff; font-weight: 600;">проектов</div>
                             </div>
-                            <div class="stat-item" style="text-align: center; padding: 20px; background: #1C202B; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);">
+                            <div class="stat-item" style="text-align: center; padding: 20px; background: #008080; border-radius: 15px; box-shadow: 0 6px 18px rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);">
                                 <div class="stat-number" style="font-size: 2.5em; font-weight: 700; color: #ffffff; margin-bottom: 10px;">РФ+ЕС</div>
                                 <div class="stat-label" style="font-size: 1.1em; color: #ffffff; font-weight: 600;">география</div>
                             </div>

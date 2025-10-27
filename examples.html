@@ -27,11 +27,45 @@
     }</script>
     <link rel="stylesheet" href="css/style.css?v=151">
     <style>
+      /* Gallery styles */
+      .example-gallery{ position:relative; overflow:hidden; }
+      .gallery-main{ position:relative; width:100%; height:auto; }
+      .gallery-image{ width:100%; height:auto; display:block; object-fit:cover; cursor:pointer; transition:opacity 0.3s; }
+      /* Make single images clickable */
+      .example-image{ cursor:pointer; transition:opacity 0.3s; }
+      .example-image:hover{ opacity:0.9; }
+      .gallery-controls{ position:absolute; bottom:8px; left:50%; transform:translateX(-50%); display:flex; gap:8px; z-index:2; }
+      .gallery-btn{ width:8px; height:8px; border-radius:50%; border:none; background:rgba(255,255,255,0.6); cursor:pointer; transition:all 0.3s; }
+      .gallery-btn.active{ background:#fff; width:24px; border-radius:4px; }
+      .gallery-counter{ position:absolute; top:8px; right:8px; background:rgba(0,0,0,0.6); color:#fff; padding:4px 8px; border-radius:4px; font-size:12px; z-index:2; }
+      /* Modal gallery styles */
+      .gallery-modal-dialog{ position:fixed; inset:0; z-index:4000; display:none; align-items:center; justify-content:center; padding:20px; background:rgba(0,0,0,0.95); }
+      .gallery-modal-dialog.active{ display:flex; }
+      .gallery-modal-content{ position:relative; max-width:90vw; max-height:90vh; display:flex; flex-direction:column; align-items:center; padding-bottom:100px; }
+      .gallery-modal-image-container{ position:relative; max-width:100%; max-height:60vh; margin-bottom:16px; min-height:400px; display:flex; align-items:center; justify-content:center; }
+      .gallery-modal-image{ max-width:100%; max-height:60vh; object-fit:contain; border-radius:8px; }
+      .gallery-modal-info{ text-align:center; color:#fff; margin-bottom:16px; }
+      .gallery-modal-info h3{ font-size:24px; margin-bottom:8px; }
+      .gallery-modal-info p{ font-size:16px; opacity:0.9; }
+      .gallery-modal-controls{ position:fixed; bottom:40px; left:50%; transform:translateX(-50%); display:flex; align-items:center; gap:16px; z-index:4001; }
+      .gallery-modal-btn{ background:rgba(255,255,255,0.2); border:none; color:#fff; width:48px; height:48px; border-radius:50%; cursor:pointer; display:flex; align-items:center; justify-content:center; font-size:24px; transition:all 0.3s; }
+      .gallery-modal-btn:hover{ background:rgba(255,255,255,0.3); }
+      .gallery-modal-btn:disabled{ opacity:0.3; cursor:not-allowed; }
+      .gallery-modal-counter{ color:#fff; font-size:16px; min-width:60px; text-align:center; }
+      @media (max-width:768px){
+        .gallery-modal-content{ max-width:95vw; padding-bottom:90px; }
+        .gallery-modal-image-container{ min-height:300px; max-height:50vh; }
+        .gallery-modal-image{ max-height:50vh; }
+        .gallery-modal-info h3{ font-size:18px; }
+        .gallery-modal-info p{ font-size:14px; }
+        .gallery-modal-btn{ width:40px; height:40px; font-size:20px; }
+        .gallery-modal-controls{ bottom:20px; }
+      }
       @media (max-width: 768px){
         .header-content{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:nowrap; }
         .logo{ display:inline-flex; align-items:center; justify-content:center; height:42px; padding:6px 10px; line-height:1; }
         .burger{ display:inline-flex !important; align-items:center; justify-content:center; width:42px; height:42px; border-radius:10px; border:1px solid rgba(28,32,43,.12); background:#fff; }
-        .burger span{ display:block; width:20px; height:2px; background:#1C202B; border-radius:2px; }
+        .burger span{ display:block; width:20px; height:2px; background:#008080; border-radius:2px; }
         .burger span + span{ margin-top:5px; }
         .nav-menu{ display:none !important; }
         .header-services-icons{ display:none !important; }
@@ -44,7 +78,7 @@
       .mobile-menu__panel{ position:absolute; right:0; top:0; width:280px; height:100%; background:#fff; transform:translateX(100%); transition:transform .25s ease; padding:20px; }
       .mobile-menu.active .mobile-menu__panel{ transform:translateX(0); }
       .mobile-menu-close{ position:absolute; top:16px; right:16px; width:40px; height:40px; border:none; background:#f1f5f9; border-radius:8px; font-size:18px; cursor:pointer; }
-      .mobile-nav-menu a{ display:block; padding:14px 0; color:#1C202B; text-decoration:none; border-bottom:1px solid #f1f5f9; }
+      .mobile-nav-menu a{ display:block; padding:14px 0; color:#008080; text-decoration:none; border-bottom:1px solid #f1f5f9; }
     </style>
     <style>
       /* Force burger visible on mobile (examples) */
@@ -70,7 +104,7 @@
       .mobile-menu__panel{position:absolute;right:0;top:0;width:280px;height:100%;background:#fff;transform:translateX(100%);transition:transform .25s ease;padding:20px}
       .mobile-menu.active .mobile-menu__panel{transform:translateX(0)}
       .mobile-menu-close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:none;background:#f1f5f9;border-radius:8px;font-size:18px;cursor:pointer}
-      .mobile-nav-menu a{display:block;padding:14px 0;color:#1C202B;text-decoration:none;border-bottom:1px solid #f1f5f9}
+      .mobile-nav-menu a{display:block;padding:14px 0;color:#008080;text-decoration:none;border-bottom:1px solid #f1f5f9}
     </style>
     <style>
       @media (max-width:768px){
@@ -101,7 +135,7 @@
                     <span class="logo-text">Игорь</span>
                     <span class="logo-surname">Кузнецов</span>
                 </a>
-                <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#1C202B" stroke-width="2" stroke-linecap="round"/></svg></button>
+                <button class="burger" aria-label="Открыть меню" aria-controls="mobile-menu" aria-expanded="false" style="display:inline-flex"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="#008080" stroke-width="2" stroke-linecap="round"/></svg></button>
                 <div class="header-services-icons desktop-only" aria-label="Быстрый доступ к услугам">
                     <button class="header-icon" data-open-modal data-service="design" title="Проектирование">
                         <img src="vektor/инженер.png" alt="Проектирование" width="24" height="24" loading="lazy" decoding="async">
@@ -193,7 +227,10 @@
             <div class="section-header" hidden aria-hidden="true"></div>
             <div class="examples-grid">
                 <div class="example-card">
-                    <img src="examples/aerotruba.png" alt="Аэротруба" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/aerotruba.webp" type="image/webp">
+                        <img src="examples/aerotruba.png" alt="Аэротруба" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Аэротруба</h3>
                     <p>Современная система вентиляции для спортивного комплекса. Проектирование и монтаж приточно-вытяжной системы с рекуперацией.</p>
                     <div class="example-details">
@@ -202,7 +239,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/boiler-1000m2.png" alt="Котловая 1000м" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/boiler-1000m2.webp" type="image/webp">
+                        <img src="examples/boiler-1000m2.png" alt="Котловая 1000м" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Котловая 1000м</h3>
                     <p>Энергоэффективная система отопления для промышленного объекта. Тепловые насосы и автоматизация управления.</p>
                     <div class="example-details">
@@ -211,7 +251,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/sanatorium-white-nights.png" alt="Санаторий Белые ночи" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/sanatorium-white-nights.webp" type="image/webp">
+                        <img src="examples/sanatorium-white-nights.png" alt="Санаторий Белые ночи" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Санаторий Белые ночи</h3>
                     <p>Комплексная система климат-контроля для санатория. Кондиционирование, вентиляция и автоматизация.</p>
                     <div class="example-details">
@@ -220,7 +263,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/elizavetinskaya-bolnitsa.jpg" alt="Елизаветинская больница" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/elizavetinskaya-bolnitsa.webp" type="image/webp">
+                        <img src="examples/elizavetinskaya-bolnitsa.jpg" alt="Елизаветинская больница" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Елизаветинская больница</h3>
                     <p>Система вентиляции для медицинского учреждения. Соблюдение всех санитарных норм и требований.</p>
                     <div class="example-details">
@@ -229,7 +275,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/cinema-kurortny.jpg" alt="Кинотеатр Курортный" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/cinema-kurortny.webp" type="image/webp">
+                        <img src="examples/cinema-kurortny.jpg" alt="Кинотеатр Курортный" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Кинотеатр Курортный</h3>
                     <p>Система кондиционирования для кинотеатра. Создание комфортного микроклимата для зрителей.</p>
                     <div class="example-details">
@@ -238,7 +287,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/mercedez-benz.png" alt="Mercedes-Benz" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/mercedez-benz.webp" type="image/webp">
+                        <img src="examples/mercedez-benz.png" alt="Mercedes-Benz" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Mercedes-Benz</h3>
                     <p>Автоматизация инженерных систем для автосалона. Умное управление освещением, климатом и безопасностью.</p>
                     <div class="example-details">
@@ -247,7 +299,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/AFIYET.png" alt="AFIYET" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/AFIYET.webp" type="image/webp">
+                        <img src="examples/AFIYET.png" alt="AFIYET" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>AFIYET</h3>
                     <p>Климат и вентиляция ресторана: стабильный комфорт гостей и персонала.</p>
                     <div class="example-details">
@@ -266,7 +321,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/auto_hamam.png" alt="Авто-хамам" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/auto_hamam.webp" type="image/webp">
+                        <img src="examples/auto_hamam.png" alt="Авто-хамам" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Авто-хамам</h3>
                     <p>Управление микроклиматом и безопасностью паровых помещений.</p>
                     <div class="example-details">
@@ -274,7 +332,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/boiler-600m2.png" alt="Котельная 600 м²" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/boiler-600m2.webp" type="image/webp">
+                        <img src="examples/boiler-600m2.png" alt="Котельная 600 м²" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Котельная 600 м²</h3>
                     <p>Энергоэффективное отопление с погодозависимой автоматикой.</p>
                     <div class="example-details">
@@ -282,7 +343,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/dispet4erizasiya.png" alt="Диспетчеризация" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/dispet4erizasiya.webp" type="image/webp">
+                        <img src="examples/dispet4erizasiya.png" alt="Диспетчеризация" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Диспетчеризация</h3>
                     <p>Единый центр управления инженерными системами объекта.</p>
                     <div class="example-details">
@@ -290,7 +354,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/fresh-fitnes.jpg" alt="Fresh Fitness" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/fresh-fitnes.webp" type="image/webp">
+                        <img src="examples/fresh-fitnes.jpg" alt="Fresh Fitness" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Fresh Fitness</h3>
                     <p>Комфортный микроклимат для спортивных залов и раздевалок.</p>
                     <div class="example-details">
@@ -298,7 +365,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/holodilnaya_kamera.png" alt="Холодильная камера" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/holodilnaya_kamera.webp" type="image/webp">
+                        <img src="examples/holodilnaya_kamera.png" alt="Холодильная камера" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Холодильная камера</h3>
                     <p>Надёжное холодоснабжение и автоматика температурных режимов.</p>
                     <div class="example-details">
@@ -306,7 +376,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/kotelnaya_150m2.png" alt="Котельная 150 м²" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/kotelnaya_150m2.webp" type="image/webp">
+                        <img src="examples/kotelnaya_150m2.png" alt="Котельная 150 м²" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Котельная 150 м²</h3>
                     <p>Компактная и безопасная котельная для частного дома.</p>
                     <div class="example-details">
@@ -314,7 +387,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/living_house.png" alt="Жилой дом" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/living_house.webp" type="image/webp">
+                        <img src="examples/living_house.png" alt="Жилой дом" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Жилой дом</h3>
                     <p>Проект вентиляции и кондиционирования для частного дома.</p>
                     <div class="example-details">
@@ -322,7 +398,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/montaz_air.png" alt="Монтаж воздуховодов" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/montaz_air.webp" type="image/webp">
+                        <img src="examples/montaz_air.png" alt="Монтаж воздуховодов" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Монтаж воздуховодов</h3>
                     <p>Качественный монтаж с учётом шумовых и аэродинамических норм.</p>
                     <div class="example-details">
@@ -330,7 +409,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/nhv-rus.png" alt="NHV Rus" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/nhv-rus.webp" type="image/webp">
+                        <img src="examples/nhv-rus.png" alt="NHV Rus" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>NHV Rus</h3>
                     <p>Инженерные системы для офисных и производственных помещений.</p>
                     <div class="example-details">
@@ -338,7 +420,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/prito4naya_vent.png" alt="Приточная вентиляция" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/prito4naya_vent.webp" type="image/webp">
+                        <img src="examples/prito4naya_vent.png" alt="Приточная вентиляция" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Приточная вентиляция</h3>
                     <p>Подбор и внедрение ПВУ с рекуперацией и фильтрацией.</p>
                     <div class="example-details">
@@ -346,7 +431,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/pushkinec.png" alt="Пушкинец" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/pushkinec.webp" type="image/webp">
+                        <img src="examples/pushkinec.png" alt="Пушкинец" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Пушкинец</h3>
                     <p>Система кондиционирования и вентиляции для культурного объекта.</p>
                     <div class="example-details">
@@ -354,7 +442,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/sanatorium-white-nights2.png" alt="Санаторий Белые ночи — корпус 2" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/sanatorium-white-nights2.webp" type="image/webp">
+                        <img src="examples/sanatorium-white-nights2.png" alt="Санаторий Белые ночи — корпус 2" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Санаторий Белые ночи — корпус 2</h3>
                     <p>Расширение климатических систем с учётом новых нагрузок.</p>
                     <div class="example-details">
@@ -362,7 +453,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/sistem_vent.png" alt="Система вентиляции" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/sistem_vent.webp" type="image/webp">
+                        <img src="examples/sistem_vent.png" alt="Система вентиляции" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Система вентиляции</h3>
                     <p>Баланс притока и вытяжки, правильные скорости и шум.</p>
                     <div class="example-details">
@@ -370,7 +464,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/souz.png" alt="СОЮЗ" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/souz.webp" type="image/webp">
+                        <img src="examples/souz.png" alt="СОЮЗ" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>СОЮЗ</h3>
                     <p>Инженерные системы для коммерческого пространства.</p>
                     <div class="example-details">
@@ -378,7 +475,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/teplovoy_nasos.png" alt="Тепловой насос" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/teplovoy_nasos.webp" type="image/webp">
+                        <img src="examples/teplovoy_nasos.png" alt="Тепловой насос" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Тепловой насос</h3>
                     <p>Тёплый дом при низких издержках: современная тепловая техника.</p>
                     <div class="example-details">
@@ -386,7 +486,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/teplovoy_nasos_2.png" alt="Тепловой насос 2" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/teplovoy_nasos_2.webp" type="image/webp">
+                        <img src="examples/teplovoy_nasos_2.png" alt="Тепловой насос 2" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Тепловой насос — проект 2</h3>
                     <p>Оптимизация потребления и интеграция с ГВС.</p>
                     <div class="example-details">
@@ -394,7 +497,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/teplovoy_nasos_3.png" alt="Тепловой насос 3" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/teplovoy_nasos_3.webp" type="image/webp">
+                        <img src="examples/teplovoy_nasos_3.png" alt="Тепловой насос 3" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Тепловой насос — проект 3</h3>
                     <p>Гибридные решения и зональное управление.</p>
                     <div class="example-details">
@@ -402,7 +508,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/teplovoy_nasos_4.png" alt="Тепловой насос 4" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/teplovoy_nasos_4.webp" type="image/webp">
+                        <img src="examples/teplovoy_nasos_4.png" alt="Тепловой насос 4" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Тепловой насос — проект 4</h3>
                     <p>Максимальная эффективность в холодном климате.</p>
                     <div class="example-details">
@@ -410,7 +519,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/udalenniy_dostup.png" alt="Удалённый доступ" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/udalenniy_dostup.webp" type="image/webp">
+                        <img src="examples/udalenniy_dostup.png" alt="Удалённый доступ" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Удалённый доступ</h3>
                     <p>Мониторинг и управление инженерией через интернет.</p>
                     <div class="example-details">
@@ -418,7 +530,10 @@
                     </div>
                 </div>
                 <div class="example-card">
-                    <img src="examples/vent_pool.png" alt="Вентиляция бассейна — проект 2" class="example-image" loading="lazy" decoding="async">
+                    <picture>
+                        <source srcset="examples/vent_pool.webp" type="image/webp">
+                        <img src="examples/vent_pool.png" alt="Вентиляция бассейна — проект 2" class="example-image" loading="lazy" decoding="async">
+                    </picture>
                     <h3>Вентиляция бассейна — проект 2</h3>
                     <p>Осушение и комфортный микроклимат чаши бассейна.</p>
                     <div class="example-details">
@@ -429,6 +544,219 @@
                     <img src="examples/WILLIAM-BASS PUB.jpg" alt="WILLIAM-BASS PUB" class="example-image" loading="lazy" decoding="async">
                     <h3>WILLIAM-BASS PUB</h3>
                     <p>Инженерные системы для гастро-паба: свежий воздух и комфорт.</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <!-- New gallery cards -->
+                <div class="example-card" data-gallery-title="Esper Club 2-floor apartments 230m²" data-gallery-description="Air conditioning and ventilation">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Esper_Club_1.jpg" alt="Esper Club photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_2.jpg" alt="Esper Club photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_3.jpg" alt="Esper Club photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_4.jpg" alt="Esper Club photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_5.jpg" alt="Esper Club photo 5" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_6.jpg" alt="Esper Club photo 6" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_7.jpg" alt="Esper Club photo 7" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_8.jpg" alt="Esper Club photo 8" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_9.jpg" alt="Esper Club photo 9" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_10.jpg" alt="Esper Club photo 10" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_11.jpg" alt="Esper Club photo 11" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_12.jpg" alt="Esper Club photo 12" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_13.jpg" alt="Esper Club photo 13" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_14.jpg" alt="Esper Club photo 14" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Esper_Club_15.jpg" alt="Esper Club photo 15" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 15</div>
+                    </div>
+                    <h3>Клубный дом "Esper Club" 2-х этажные апартаменты 230м²</h3>
+                    <p>Кондиционирование и вентиляция</p>
+                    <div class="example-details">
+                        <span class="example-type">Кондиционирование</span>
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Barcelona Apartments" data-gallery-description="Air conditioning and ventilation">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Apartamenti_Barselona_1.jpg" alt="Barcelona Apartments photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Barselona_2.jpg" alt="Barcelona Apartments photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Barselona_3.jpg" alt="Barcelona Apartments photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Barselona_4.jpg" alt="Barcelona Apartments photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Barselona_5.jpg" alt="Barcelona Apartments photo 5" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Barselona_6.jpg" alt="Barcelona Apartments photo 6" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Barselona_7.jpg" alt="Barcelona Apartments photo 7" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 7</div>
+                    </div>
+                    <h3>Апартаменты в Барселоне</h3>
+                    <p>Кондиционирование и вентиляция</p>
+                    <div class="example-details">
+                        <span class="example-type">Кондиционирование</span>
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Valencia Apartments" data-gallery-description="Air conditioning and ventilation">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Apartamenti_Valensiya_1.jpg" alt="Valencia Apartments photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Valensiya_2.jpg" alt="Valencia Apartments photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Valensiya_3.jpg" alt="Valencia Apartments photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Valensiya_4.jpg" alt="Valencia Apartments photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 4</div>
+                    </div>
+                    <h3>Апартаменты в Валенсии</h3>
+                    <p>Кондиционирование и вентиляция</p>
+                    <div class="example-details">
+                        <span class="example-type">Кондиционирование</span>
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Vasilievsky Island Apartments" data-gallery-description="Air conditioning and ventilation">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_1.jpg" alt="Vasilievsky Island photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_2.jpg" alt="Vasilievsky Island photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_3.jpg" alt="Vasilievsky Island photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_4.jpg" alt="Vasilievsky Island photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_5.jpg" alt="Vasilievsky Island photo 5" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_6.jpg" alt="Vasilievsky Island photo 6" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_7.jpg" alt="Vasilievsky Island photo 7" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_8.jpg" alt="Vasilievsky Island photo 8" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_9.jpg" alt="Vasilievsky Island photo 9" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_10.jpg" alt="Vasilievsky Island photo 10" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Apartamenti_Vasilevskiy_ostrov_11.jpg" alt="Vasilievsky Island photo 11" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 11</div>
+                    </div>
+                    <h3>Апартаменты на Васильевском острове</h3>
+                    <p>Кондиционирование и вентиляция</p>
+                    <div class="example-details">
+                        <span class="example-type">Кондиционирование</span>
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Valencia House" data-gallery-description="Solar panels installation">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Valensiya_Igor_1.jpg" alt="Valencia House photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Valensiya_Igor_2.jpg" alt="Valencia House photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 2</div>
+                    </div>
+                    <h3>Дом в Валенсии</h3>
+                    <p>Установка солнечных панелей</p>
+                    <div class="example-details">
+                        <span class="example-type">Автоматизация</span>
+                    </div>
+                </div>
+                <div class="example-card">
+                    <picture>
+                        <source srcset="examples/JK_Domino.webp" type="image/webp">
+                        <img src="examples/JK_Domino.jpg" alt="JK Domino Apartments" class="example-image" loading="lazy" decoding="async">
+                    </picture>
+                    <h3>Апартаменты в ЖК Домино</h3>
+                    <p>Кондиционирование и вентиляция</p>
+                    <div class="example-details">
+                        <span class="example-type">Кондиционирование</span>
+                        <span class="example-type">Вентиляция</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Kirovsky Plant SOGAZ" data-gallery-description="Engineering systems">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Kirovskiy_zavod_1.jpg" alt="Kirovsky Plant photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Kirovskiy_zavod_2.jpg" alt="Kirovsky Plant photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Kirovskiy_zavod_3.jpg" alt="Kirovsky Plant photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 3</div>
+                    </div>
+                    <h3>Кировский завод (СОГАЗ)</h3>
+                    <p>Инженерные системы</p>
+                    <div class="example-details">
+                        <span class="example-type">Климат-контроль</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Ilichevo Cottage" data-gallery-description="Engineering systems">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Kottedzh_Ilichevo_1.jpg" alt="Ilichevo Cottage photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Kottedzh_Ilichevo_2.jpg" alt="Ilichevo Cottage photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 2</div>
+                    </div>
+                    <h3>Коттедж в Ильичева</h3>
+                    <p>Инженерные системы</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Private Complex 3 Houses Ilichevo" data-gallery-description="Engineering systems">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/3_doma_Ilichevo_1.jpg" alt="Private Complex Ilichevo photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/3_doma_Ilichevo_2.jpg" alt="Private Complex Ilichevo photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/3_doma_Ilichevo_3.jpg" alt="Private Complex Ilichevo photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/3_doma_Ilichevo_4.jpg" alt="Private Complex Ilichevo photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/3_doma_Ilichevo_5.jpg" alt="Private Complex Ilichevo photo 5" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/3_doma_Ilichevo_6.jpg" alt="Private Complex Ilichevo photo 6" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 6</div>
+                    </div>
+                    <h3>Частный комплекс, 3 дома в Ильичево</h3>
+                    <p>Инженерные системы</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Private Complex 3000m²" data-gallery-description="Engineering systems">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/kompleks_3000m2_1.jpg" alt="Private Complex 3000m² photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_2.jpg" alt="Private Complex 3000m² photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_3.jpg" alt="Private Complex 3000m² photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_4.jpg" alt="Private Complex 3000m² photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_5.jpg" alt="Private Complex 3000m² photo 5" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_6.jpg" alt="Private Complex 3000m² photo 6" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_7.jpg" alt="Private Complex 3000m² photo 7" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_8.jpg" alt="Private Complex 3000m² photo 8" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_9.jpg" alt="Private Complex 3000m² photo 9" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_10.jpg" alt="Private Complex 3000m² photo 10" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/kompleks_3000m2_11.jpg" alt="Private Complex 3000m² photo 11" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 11</div>
+                    </div>
+                    <h3>Частный комплекс 3000м²</h3>
+                    <p>Инженерные системы</p>
+                    <div class="example-details">
+                        <span class="example-type">Отопление</span>
+                    </div>
+                </div>
+                <div class="example-card" data-gallery-title="Yachting Club" data-gallery-description="Engineering systems">
+                    <div class="example-gallery">
+                        <div class="gallery-main">
+                            <img src="examples/Eling_1.jpg" alt="Yachting Club photo 1" class="gallery-image" loading="lazy" decoding="async">
+                            <img src="examples/Eling_2.jpg" alt="Yachting Club photo 2" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Eling_3.jpg" alt="Yachting Club photo 3" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Eling_4.jpg" alt="Yachting Club photo 4" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                            <img src="examples/Eling_6.jpg" alt="Yachting Club photo 5" class="gallery-image" style="display:none;" loading="lazy" decoding="async">
+                        </div>
+                        <div class="gallery-controls"></div>
+                        <div class="gallery-counter">1 / 5</div>
+                    </div>
+                    <h3>Элинг</h3>
+                    <p>Инженерные системы</p>
                     <div class="example-details">
                         <span class="example-type">Климат-контроль</span>
                     </div>
@@ -487,7 +815,310 @@
         <button class="fab fab-contact" id="fab-contact" title="Связаться" aria-label="Связаться">Связаться</button>
     </div>
 
+    <!-- Gallery Modal -->
+    <div class="gallery-modal-dialog" id="gallery-modal" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="gallery-modal-content">
+            <div class="gallery-modal-image-container">
+                <img class="gallery-modal-image" id="gallery-modal-image" src="" alt="" loading="lazy">
+            </div>
+            <div class="gallery-modal-info">
+                <h3 id="gallery-modal-title"></h3>
+                <p id="gallery-modal-description"></p>
+            </div>
+            <div class="gallery-modal-controls">
+                <button class="gallery-modal-btn gallery-modal-prev" id="gallery-modal-prev" aria-label="Предыдущее фото">‹</button>
+                <span class="gallery-modal-counter" id="gallery-modal-counter">1 / 1</span>
+                <button class="gallery-modal-btn gallery-modal-next" id="gallery-modal-next" aria-label="Следующее фото">›</button>
+            </div>
+        </div>
+    </div>
+
     <script src="js/script.js?v=151" defer></script>
+    <script>
+        // Auto WebP support for all images
+        document.addEventListener('DOMContentLoaded', function() {
+            const images = document.querySelectorAll('.gallery-image, .example-image');
+            images.forEach(img => {
+                const src = img.src;
+                // Replace .jpg with .webp
+                if (src.includes('.jpg')) {
+                    const webpSrc = src.replace('.jpg', '.webp');
+                    const webpImg = new Image();
+                    webpImg.onload = function() {
+                        img.src = webpSrc;
+                    };
+                    webpImg.onerror = function() {
+                        // Keep original JPG if WebP doesn't exist
+                    };
+                    webpImg.src = webpSrc;
+                }
+                // Replace .png with .webp
+                else if (src.includes('.png')) {
+                    const webpSrc = src.replace('.png', '.webp');
+                    const webpImg = new Image();
+                    webpImg.onload = function() {
+                        img.src = webpSrc;
+                    };
+                    webpImg.onerror = function() {
+                        // Keep original PNG if WebP doesn't exist
+                    };
+                    webpImg.src = webpSrc;
+                }
+            });
+        });
+        
+        // Gallery functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const galleries = document.querySelectorAll('.example-gallery');
+            const modal = document.getElementById('gallery-modal');
+            const modalImage = document.getElementById('gallery-modal-image');
+            const modalTitle = document.getElementById('gallery-modal-title');
+            const modalDescription = document.getElementById('gallery-modal-description');
+            const modalCounter = document.getElementById('gallery-modal-counter');
+            const modalPrev = document.getElementById('gallery-modal-prev');
+            const modalNext = document.getElementById('gallery-modal-next');
+            
+            let allImages = [];
+            let currentImageIndex = 0;
+            
+            // First, collect all images from the page
+            document.querySelectorAll('.example-card').forEach(card => {
+                const gallery = card.querySelector('.example-gallery');
+                const title = card.querySelector('h3').textContent;
+                const description = card.querySelector('p').textContent;
+                
+                if (gallery) {
+                    // Gallery card - collect all gallery images
+                    const images = gallery.querySelectorAll('.gallery-image');
+                    images.forEach((img) => {
+                        let src = img.src;
+                        let webpSrc, fallbackSrc;
+                        if (src.includes('.jpg')) {
+                            webpSrc = src.replace('.jpg', '.webp');
+                            fallbackSrc = src;
+                        } else if (src.includes('.png')) {
+                            webpSrc = src.replace('.png', '.webp');
+                            fallbackSrc = src;
+                        } else {
+                            webpSrc = src;
+                            fallbackSrc = src;
+                        }
+                        allImages.push({
+                            src: webpSrc,
+                            fallbackSrc: fallbackSrc,
+                            alt: img.alt,
+                            title: title,
+                            description: description
+                        });
+                    });
+                } else {
+                    // Single image card
+                    const img = card.querySelector('.example-image');
+                    if (img) {
+                        let src = img.src;
+                        let webpSrc, fallbackSrc;
+                        if (src.includes('.jpg')) {
+                            webpSrc = src.replace('.jpg', '.webp');
+                            fallbackSrc = src;
+                        } else if (src.includes('.png')) {
+                            webpSrc = src.replace('.png', '.webp');
+                            fallbackSrc = src;
+                        } else {
+                            webpSrc = src;
+                            fallbackSrc = src;
+                        }
+                        allImages.push({
+                            src: webpSrc,
+                            fallbackSrc: fallbackSrc,
+                            alt: img.alt,
+                            title: title,
+                            description: description
+                        });
+                    }
+                }
+            });
+            
+            // Now initialize galleries with click handlers
+            galleries.forEach((gallery) => {
+                const images = gallery.querySelectorAll('.gallery-image');
+                const controls = gallery.querySelector('.gallery-controls');
+                const counter = gallery.querySelector('.gallery-counter');
+                const card = gallery.closest('.example-card');
+                const allCards = document.querySelectorAll('.example-card');
+                const cardIndex = Array.from(allCards).indexOf(card);
+                const title = card.getAttribute('data-gallery-title') || card.querySelector('h3').textContent;
+                const description = card.getAttribute('data-gallery-description') || card.querySelector('p').textContent;
+                
+                let currentIndex = 0;
+                let autoplayInterval;
+                
+                // Create control buttons
+                images.forEach((_, index) => {
+                    const btn = document.createElement('button');
+                    btn.className = 'gallery-btn' + (index === 0 ? ' active' : '');
+                    btn.setAttribute('aria-label', `Показать фото ${index + 1}`);
+                    btn.addEventListener('click', () => {
+                        currentIndex = index;
+                        updateGallery();
+                    });
+                    controls.appendChild(btn);
+                });
+                
+                // Update gallery display
+                function updateGallery() {
+                    images.forEach((img, index) => {
+                        img.style.display = index === currentIndex ? 'block' : 'none';
+                    });
+                    controls.querySelectorAll('.gallery-btn').forEach((btn, index) => {
+                        btn.classList.toggle('active', index === currentIndex);
+                    });
+                    counter.textContent = `${currentIndex + 1} / ${images.length}`;
+                }
+                
+                // Autoplay on hover
+                gallery.addEventListener('mouseenter', () => {
+                    autoplayInterval = setInterval(() => {
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateGallery();
+                    }, 3000);
+                });
+                
+                gallery.addEventListener('mouseleave', () => {
+                    clearInterval(autoplayInterval);
+                });
+                
+                // Open modal on image click
+                images.forEach((img, index) => {
+                    img.addEventListener('click', () => {
+                        // Find the index of this image in allImages array
+                        let globalIndex = 0;
+                        let found = false;
+                        document.querySelectorAll('.example-card').forEach((c, idx) => {
+                            if (idx < cardIndex) {
+                                const g = c.querySelector('.example-gallery');
+                                if (g) {
+                                    globalIndex += g.querySelectorAll('.gallery-image').length;
+                                } else {
+                                    globalIndex += 1;
+                                }
+                            } else if (idx === cardIndex && !found) {
+                                globalIndex += index;
+                                found = true;
+                            }
+                        });
+                        currentImageIndex = globalIndex;
+                        updateModalImage();
+                        modal.classList.add('active');
+                        document.body.style.overflow = 'hidden';
+                    });
+                });
+            });
+            
+            // Update modal image
+            function updateModalImage() {
+                const img = allImages[currentImageIndex];
+                
+                // Try WebP first, fallback to JPG if needed
+                if (img.fallbackSrc) {
+                    const webpImg = new Image();
+                    webpImg.onload = function() {
+                        modalImage.src = img.src;
+                    };
+                    webpImg.onerror = function() {
+                        modalImage.src = img.fallbackSrc;
+                    };
+                    webpImg.src = img.src;
+                } else {
+                    modalImage.src = img.src;
+                }
+                
+                modalImage.alt = img.alt;
+                modalTitle.textContent = img.title;
+                modalDescription.textContent = img.description;
+                modalCounter.textContent = `${currentImageIndex + 1} / ${allImages.length}`;
+                
+                modalPrev.disabled = currentImageIndex === 0;
+                modalNext.disabled = currentImageIndex === allImages.length - 1;
+            }
+            
+            // Close modal
+            function closeGalleryModal() {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+            
+            // Modal navigation
+            modalPrev.addEventListener('click', () => {
+                if (currentImageIndex > 0) {
+                    currentImageIndex--;
+                    updateModalImage();
+                }
+            });
+            
+            modalNext.addEventListener('click', () => {
+                if (currentImageIndex < allImages.length - 1) {
+                    currentImageIndex++;
+                    updateModalImage();
+                }
+            });
+            
+            // Close modal on backdrop click
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeGalleryModal();
+                }
+            });
+            
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (modal.classList.contains('active')) {
+                    if (e.key === 'Escape') {
+                        closeGalleryModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        modalPrev.click();
+                    } else if (e.key === 'ArrowRight') {
+                        modalNext.click();
+                    }
+                }
+            });
+            
+            // Handle clicks on single images (non-gallery images)
+            let singleImageIndex = 0;
+            document.querySelectorAll('.example-card').forEach((card, cardIndex) => {
+                const gallery = card.querySelector('.example-gallery');
+                if (!gallery) {
+                    // This is a single image card, not a gallery
+                    const img = card.querySelector('.example-image');
+                    if (img) {
+                        img.style.cursor = 'pointer';
+                        const currentSingleIndex = singleImageIndex;
+                        singleImageIndex++;
+                        
+                        img.addEventListener('click', () => {
+                            // Calculate global index
+                            let globalIndex = 0;
+                            document.querySelectorAll('.example-card').forEach((c, idx) => {
+                                if (idx < cardIndex) {
+                                    const g = c.querySelector('.example-gallery');
+                                    if (g) {
+                                        globalIndex += g.querySelectorAll('.gallery-image').length;
+                                    } else {
+                                        globalIndex += 1;
+                                    }
+                                } else if (idx === cardIndex) {
+                                    // This is the current card
+                                }
+                            });
+                            currentImageIndex = globalIndex;
+                            updateModalImage();
+                            modal.classList.add('active');
+                            document.body.style.overflow = 'hidden';
+                        });
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html>
 
